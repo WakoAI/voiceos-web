@@ -1,0 +1,22 @@
+export declare enum DeepgramLanguages {
+    En = "en",
+    Fr = "fr",
+    Es = "es",
+    De = "de",
+    It = "it",
+    Nl = "nl",
+    Pt = "pt",
+    Ru = "ru",
+    Ja = "ja",
+    Cs = "cs",
+    Da = "da",
+    El = "el",
+    Hi = "hi",
+    Id = "id",
+    Ko = "ko",
+    No = "no",
+    Pl = "pl",
+    Sv = "sv",
+    Tr = "tr",
+    Uk = "uk"
+}

@@ -1,0 +1,31 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AzureLanguages = void 0;
+var AzureLanguages;
+(function (AzureLanguages) {
+    AzureLanguages["EnUs"] = "en-US";
+    AzureLanguages["FrFr"] = "fr-FR";
+    AzureLanguages["EsEs"] = "es-ES";
+    AzureLanguages["DeDe"] = "de-DE";
+    AzureLanguages["ItIt"] = "it-IT";
+    AzureLanguages["NlNl"] = "nl-NL";
+    AzureLanguages["PtBr"] = "pt-BR";
+    AzureLanguages["RuRu"] = "ru-RU";
+    AzureLanguages["JaJp"] = "ja-JP";
+    AzureLanguages["ZhCn"] = "zh-CN";
+    AzureLanguages["KoKr"] = "ko-KR";
+    AzureLanguages["ArSa"] = "ar-SA";
+    AzureLanguages["HiIn"] = "hi-IN";
+    AzureLanguages["IdId"] = "id-ID";
+    AzureLanguages["TrTr"] = "tr-TR";
+    AzureLanguages["UkUa"] = "uk-UA";
+    AzureLanguages["PlPl"] = "pl-PL";
+    AzureLanguages["SvSe"] = "sv-SE";
+    AzureLanguages["DaDk"] = "da-DK";
+    AzureLanguages["NbNo"] = "nb-NO";
+    AzureLanguages["FiFi"] = "fi-FI";
+    AzureLanguages["ViVn"] = "vi-VN";
+    AzureLanguages["ThTh"] = "th-TH";
+    AzureLanguages["CsCz"] = "cs-CZ";
+})(AzureLanguages = exports.AzureLanguages || (exports.AzureLanguages = {}));
+//# sourceMappingURL=AzureLanguages.js.map
