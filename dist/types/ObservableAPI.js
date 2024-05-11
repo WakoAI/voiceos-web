@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ObservablePhoneNumbersApi = exports.ObservableCallsApi = exports.ObservableAgentsApi = void 0;
+exports.ObservablePhoneNumbersApi = exports.ObservableDefaultApi = exports.ObservableConversationsApi = exports.ObservableAgentsApi = void 0;
 var rxjsStub_1 = require("../rxjsStub");
 var rxjsStub_2 = require("../rxjsStub");
 var AgentsApi_1 = require("../apis/AgentsApi");
@@ -37,9 +37,9 @@ var ObservableAgentsApi = (function () {
     ObservableAgentsApi.prototype.createAgent = function (agentConfiguration, _options) {
         return this.createAgentWithHttpInfo(agentConfiguration, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservableAgentsApi.prototype.deleteAgentWithHttpInfo = function (agentId, _options) {
+    ObservableAgentsApi.prototype.deleteAgentWithHttpInfo = function (id, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.deleteAgent(agentId, _options);
+        var requestContextPromise = this.requestFactory.deleteAgent(id, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_3 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -61,12 +61,12 @@ var ObservableAgentsApi = (function () {
             return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.deleteAgentWithHttpInfo(rsp); }));
         }));
     };
-    ObservableAgentsApi.prototype.deleteAgent = function (agentId, _options) {
-        return this.deleteAgentWithHttpInfo(agentId, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservableAgentsApi.prototype.deleteAgent = function (id, _options) {
+        return this.deleteAgentWithHttpInfo(id, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservableAgentsApi.prototype.getAgentWithHttpInfo = function (agentId, _options) {
+    ObservableAgentsApi.prototype.getAgentWithHttpInfo = function (id, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.getAgent(agentId, _options);
+        var requestContextPromise = this.requestFactory.getAgent(id, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_5 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -88,12 +88,12 @@ var ObservableAgentsApi = (function () {
             return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.getAgentWithHttpInfo(rsp); }));
         }));
     };
-    ObservableAgentsApi.prototype.getAgent = function (agentId, _options) {
-        return this.getAgentWithHttpInfo(agentId, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservableAgentsApi.prototype.getAgent = function (id, _options) {
+        return this.getAgentWithHttpInfo(id, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservableAgentsApi.prototype.listAgentsWithHttpInfo = function (createdAfter, createdBefore, index, size, _options) {
+    ObservableAgentsApi.prototype.listAgentsWithHttpInfo = function (createdAfter, createdBefore, index, limit, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.listAgents(createdAfter, createdBefore, index, size, _options);
+        var requestContextPromise = this.requestFactory.listAgents(createdAfter, createdBefore, index, limit, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_7 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -115,12 +115,12 @@ var ObservableAgentsApi = (function () {
             return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.listAgentsWithHttpInfo(rsp); }));
         }));
     };
-    ObservableAgentsApi.prototype.listAgents = function (createdAfter, createdBefore, index, size, _options) {
-        return this.listAgentsWithHttpInfo(createdAfter, createdBefore, index, size, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservableAgentsApi.prototype.listAgents = function (createdAfter, createdBefore, index, limit, _options) {
+        return this.listAgentsWithHttpInfo(createdAfter, createdBefore, index, limit, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservableAgentsApi.prototype.updateAgentWithHttpInfo = function (agentId, updateAgent, _options) {
+    ObservableAgentsApi.prototype.updateAgentWithHttpInfo = function (id, updateAgent, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.updateAgent(agentId, updateAgent, _options);
+        var requestContextPromise = this.requestFactory.updateAgent(id, updateAgent, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_9 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -142,22 +142,22 @@ var ObservableAgentsApi = (function () {
             return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.updateAgentWithHttpInfo(rsp); }));
         }));
     };
-    ObservableAgentsApi.prototype.updateAgent = function (agentId, updateAgent, _options) {
-        return this.updateAgentWithHttpInfo(agentId, updateAgent, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservableAgentsApi.prototype.updateAgent = function (id, updateAgent, _options) {
+        return this.updateAgentWithHttpInfo(id, updateAgent, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
     return ObservableAgentsApi;
 }());
 exports.ObservableAgentsApi = ObservableAgentsApi;
-var CallsApi_1 = require("../apis/CallsApi");
-var ObservableCallsApi = (function () {
-    function ObservableCallsApi(configuration, requestFactory, responseProcessor) {
+var ConversationsApi_1 = require("../apis/ConversationsApi");
+var ObservableConversationsApi = (function () {
+    function ObservableConversationsApi(configuration, requestFactory, responseProcessor) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new CallsApi_1.CallsApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new CallsApi_1.CallsApiResponseProcessor();
+        this.requestFactory = requestFactory || new ConversationsApi_1.ConversationsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new ConversationsApi_1.ConversationsApiResponseProcessor();
     }
-    ObservableCallsApi.prototype.createCallWithHttpInfo = function (createCall, _options) {
+    ObservableConversationsApi.prototype.createPhoneCallWithHttpInfo = function (createCall, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.createCall(createCall, _options);
+        var requestContextPromise = this.requestFactory.createPhoneCall(createCall, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_11 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -176,15 +176,15 @@ var ObservableCallsApi = (function () {
                 var middleware = _a[_i];
                 _loop_12(middleware);
             }
-            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.createCallWithHttpInfo(rsp); }));
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.createPhoneCallWithHttpInfo(rsp); }));
         }));
     };
-    ObservableCallsApi.prototype.createCall = function (createCall, _options) {
-        return this.createCallWithHttpInfo(createCall, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservableConversationsApi.prototype.createPhoneCall = function (createCall, _options) {
+        return this.createPhoneCallWithHttpInfo(createCall, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservableCallsApi.prototype.getCallWithHttpInfo = function (callId, _options) {
+    ObservableConversationsApi.prototype.getAudioRecordingWithHttpInfo = function (id, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.getCall(callId, _options);
+        var requestContextPromise = this.requestFactory.getAudioRecording(id, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_13 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -203,15 +203,15 @@ var ObservableCallsApi = (function () {
                 var middleware = _a[_i];
                 _loop_14(middleware);
             }
-            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.getCallWithHttpInfo(rsp); }));
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.getAudioRecordingWithHttpInfo(rsp); }));
         }));
     };
-    ObservableCallsApi.prototype.getCall = function (callId, _options) {
-        return this.getCallWithHttpInfo(callId, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservableConversationsApi.prototype.getAudioRecording = function (id, _options) {
+        return this.getAudioRecordingWithHttpInfo(id, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservableCallsApi.prototype.getRecordingWithHttpInfo = function (callId, _options) {
+    ObservableConversationsApi.prototype.getConversationWithHttpInfo = function (id, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.getRecording(callId, _options);
+        var requestContextPromise = this.requestFactory.getConversation(id, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_15 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -230,15 +230,15 @@ var ObservableCallsApi = (function () {
                 var middleware = _a[_i];
                 _loop_16(middleware);
             }
-            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.getRecordingWithHttpInfo(rsp); }));
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.getConversationWithHttpInfo(rsp); }));
         }));
     };
-    ObservableCallsApi.prototype.getRecording = function (callId, _options) {
-        return this.getRecordingWithHttpInfo(callId, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservableConversationsApi.prototype.getConversation = function (id, _options) {
+        return this.getConversationWithHttpInfo(id, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservableCallsApi.prototype.listCallsWithHttpInfo = function (status, createdBefore, createdAfter, index, size, _options) {
+    ObservableConversationsApi.prototype.listConversationsWithHttpInfo = function (status, createdBefore, createdAfter, index, limit, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.listCalls(status, createdBefore, createdAfter, index, size, _options);
+        var requestContextPromise = this.requestFactory.listConversations(status, createdBefore, createdAfter, index, limit, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_17 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -257,25 +257,25 @@ var ObservableCallsApi = (function () {
                 var middleware = _a[_i];
                 _loop_18(middleware);
             }
-            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.listCallsWithHttpInfo(rsp); }));
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.listConversationsWithHttpInfo(rsp); }));
         }));
     };
-    ObservableCallsApi.prototype.listCalls = function (status, createdBefore, createdAfter, index, size, _options) {
-        return this.listCallsWithHttpInfo(status, createdBefore, createdAfter, index, size, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservableConversationsApi.prototype.listConversations = function (status, createdBefore, createdAfter, index, limit, _options) {
+        return this.listConversationsWithHttpInfo(status, createdBefore, createdAfter, index, limit, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    return ObservableCallsApi;
+    return ObservableConversationsApi;
 }());
-exports.ObservableCallsApi = ObservableCallsApi;
-var PhoneNumbersApi_1 = require("../apis/PhoneNumbersApi");
-var ObservablePhoneNumbersApi = (function () {
-    function ObservablePhoneNumbersApi(configuration, requestFactory, responseProcessor) {
+exports.ObservableConversationsApi = ObservableConversationsApi;
+var DefaultApi_1 = require("../apis/DefaultApi");
+var ObservableDefaultApi = (function () {
+    function ObservableDefaultApi(configuration, requestFactory, responseProcessor) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new PhoneNumbersApi_1.PhoneNumbersApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new PhoneNumbersApi_1.PhoneNumbersApiResponseProcessor();
+        this.requestFactory = requestFactory || new DefaultApi_1.DefaultApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new DefaultApi_1.DefaultApiResponseProcessor();
     }
-    ObservablePhoneNumbersApi.prototype.buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo = function (buyPhoneNumber, _options) {
+    ObservableDefaultApi.prototype.healthCheckGetWithHttpInfo = function (_options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.buyPhoneNumberPhoneNumbersBuyPost(buyPhoneNumber, _options);
+        var requestContextPromise = this.requestFactory.healthCheckGet(_options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_19 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -294,15 +294,25 @@ var ObservablePhoneNumbersApi = (function () {
                 var middleware = _a[_i];
                 _loop_20(middleware);
             }
-            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo(rsp); }));
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.healthCheckGetWithHttpInfo(rsp); }));
         }));
     };
-    ObservablePhoneNumbersApi.prototype.buyPhoneNumberPhoneNumbersBuyPost = function (buyPhoneNumber, _options) {
-        return this.buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo(buyPhoneNumber, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservableDefaultApi.prototype.healthCheckGet = function (_options) {
+        return this.healthCheckGetWithHttpInfo(_options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservablePhoneNumbersApi.prototype.deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo = function (phoneNumber, releasePhoneNumber, _options) {
+    return ObservableDefaultApi;
+}());
+exports.ObservableDefaultApi = ObservableDefaultApi;
+var PhoneNumbersApi_1 = require("../apis/PhoneNumbersApi");
+var ObservablePhoneNumbersApi = (function () {
+    function ObservablePhoneNumbersApi(configuration, requestFactory, responseProcessor) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new PhoneNumbersApi_1.PhoneNumbersApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new PhoneNumbersApi_1.PhoneNumbersApiResponseProcessor();
+    }
+    ObservablePhoneNumbersApi.prototype.availableNumbersToBuyWithHttpInfo = function (contains, limit, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.deletePhoneNumberPhoneNumbersPhoneNumberDelete(phoneNumber, releasePhoneNumber, _options);
+        var requestContextPromise = this.requestFactory.availableNumbersToBuy(contains, limit, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_21 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -321,15 +331,15 @@ var ObservablePhoneNumbersApi = (function () {
                 var middleware = _a[_i];
                 _loop_22(middleware);
             }
-            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo(rsp); }));
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.availableNumbersToBuyWithHttpInfo(rsp); }));
         }));
     };
-    ObservablePhoneNumbersApi.prototype.deletePhoneNumberPhoneNumbersPhoneNumberDelete = function (phoneNumber, releasePhoneNumber, _options) {
-        return this.deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo(phoneNumber, releasePhoneNumber, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservablePhoneNumbersApi.prototype.availableNumbersToBuy = function (contains, limit, _options) {
+        return this.availableNumbersToBuyWithHttpInfo(contains, limit, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservablePhoneNumbersApi.prototype.getPhoneNumberWithHttpInfo = function (phoneNumber, _options) {
+    ObservablePhoneNumbersApi.prototype.buyPhoneNumberWithHttpInfo = function (buyPhoneNumber, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.getPhoneNumber(phoneNumber, _options);
+        var requestContextPromise = this.requestFactory.buyPhoneNumber(buyPhoneNumber, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_23 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -348,15 +358,15 @@ var ObservablePhoneNumbersApi = (function () {
                 var middleware = _a[_i];
                 _loop_24(middleware);
             }
-            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.getPhoneNumberWithHttpInfo(rsp); }));
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.buyPhoneNumberWithHttpInfo(rsp); }));
         }));
     };
-    ObservablePhoneNumbersApi.prototype.getPhoneNumber = function (phoneNumber, _options) {
-        return this.getPhoneNumberWithHttpInfo(phoneNumber, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservablePhoneNumbersApi.prototype.buyPhoneNumber = function (buyPhoneNumber, _options) {
+        return this.buyPhoneNumberWithHttpInfo(buyPhoneNumber, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservablePhoneNumbersApi.prototype.listAvailablePhoneNumbersWithHttpInfo = function (areaCode, contains, limit, _options) {
+    ObservablePhoneNumbersApi.prototype.deletePhoneNumberWithHttpInfo = function (phoneNumber, releasePhoneNumber, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.listAvailablePhoneNumbers(areaCode, contains, limit, _options);
+        var requestContextPromise = this.requestFactory.deletePhoneNumber(phoneNumber, releasePhoneNumber, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_25 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -375,15 +385,15 @@ var ObservablePhoneNumbersApi = (function () {
                 var middleware = _a[_i];
                 _loop_26(middleware);
             }
-            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.listAvailablePhoneNumbersWithHttpInfo(rsp); }));
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.deletePhoneNumberWithHttpInfo(rsp); }));
         }));
     };
-    ObservablePhoneNumbersApi.prototype.listAvailablePhoneNumbers = function (areaCode, contains, limit, _options) {
-        return this.listAvailablePhoneNumbersWithHttpInfo(areaCode, contains, limit, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservablePhoneNumbersApi.prototype.deletePhoneNumber = function (phoneNumber, releasePhoneNumber, _options) {
+        return this.deletePhoneNumberWithHttpInfo(phoneNumber, releasePhoneNumber, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservablePhoneNumbersApi.prototype.listPhoneNumbersWithHttpInfo = function (createdAfter, createdBefore, index, size, _options) {
+    ObservablePhoneNumbersApi.prototype.getPhoneNumberWithHttpInfo = function (phoneNumber, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.listPhoneNumbers(createdAfter, createdBefore, index, size, _options);
+        var requestContextPromise = this.requestFactory.getPhoneNumber(phoneNumber, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_27 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -402,15 +412,15 @@ var ObservablePhoneNumbersApi = (function () {
                 var middleware = _a[_i];
                 _loop_28(middleware);
             }
-            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.listPhoneNumbersWithHttpInfo(rsp); }));
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.getPhoneNumberWithHttpInfo(rsp); }));
         }));
     };
-    ObservablePhoneNumbersApi.prototype.listPhoneNumbers = function (createdAfter, createdBefore, index, size, _options) {
-        return this.listPhoneNumbersWithHttpInfo(createdAfter, createdBefore, index, size, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservablePhoneNumbersApi.prototype.getPhoneNumber = function (phoneNumber, _options) {
+        return this.getPhoneNumberWithHttpInfo(phoneNumber, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
-    ObservablePhoneNumbersApi.prototype.updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo = function (phoneNumber, updatePhoneNumber, _options) {
+    ObservablePhoneNumbersApi.prototype.listPhoneNumbersWithHttpInfo = function (createdAfter, createdBefore, index, limit, _options) {
         var _this = this;
-        var requestContextPromise = this.requestFactory.updatePhoneNumberPhoneNumbersPhoneNumberPatch(phoneNumber, updatePhoneNumber, _options);
+        var requestContextPromise = this.requestFactory.listPhoneNumbers(createdAfter, createdBefore, index, limit, _options);
         var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
         var _loop_29 = function (middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
@@ -429,11 +439,38 @@ var ObservablePhoneNumbersApi = (function () {
                 var middleware = _a[_i];
                 _loop_30(middleware);
             }
-            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo(rsp); }));
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.listPhoneNumbersWithHttpInfo(rsp); }));
         }));
     };
-    ObservablePhoneNumbersApi.prototype.updatePhoneNumberPhoneNumbersPhoneNumberPatch = function (phoneNumber, updatePhoneNumber, _options) {
-        return this.updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo(phoneNumber, updatePhoneNumber, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    ObservablePhoneNumbersApi.prototype.listPhoneNumbers = function (createdAfter, createdBefore, index, limit, _options) {
+        return this.listPhoneNumbersWithHttpInfo(createdAfter, createdBefore, index, limit, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
+    };
+    ObservablePhoneNumbersApi.prototype.updatePhoneNumberWithHttpInfo = function (phoneNumber, updatePhoneNumber, _options) {
+        var _this = this;
+        var requestContextPromise = this.requestFactory.updatePhoneNumber(phoneNumber, updatePhoneNumber, _options);
+        var middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+        var _loop_31 = function (middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return middleware.pre(ctx); }));
+        };
+        for (var _i = 0, _a = this.configuration.middleware; _i < _a.length; _i++) {
+            var middleware = _a[_i];
+            _loop_31(middleware);
+        }
+        return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)(function (ctx) { return _this.configuration.httpApi.send(ctx); })).
+            pipe((0, rxjsStub_2.mergeMap)(function (response) {
+            var middlewarePostObservable = (0, rxjsStub_1.of)(response);
+            var _loop_32 = function (middleware) {
+                middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)(function (rsp) { return middleware.post(rsp); }));
+            };
+            for (var _i = 0, _a = _this.configuration.middleware; _i < _a.length; _i++) {
+                var middleware = _a[_i];
+                _loop_32(middleware);
+            }
+            return middlewarePostObservable.pipe((0, rxjsStub_2.map)(function (rsp) { return _this.responseProcessor.updatePhoneNumberWithHttpInfo(rsp); }));
+        }));
+    };
+    ObservablePhoneNumbersApi.prototype.updatePhoneNumber = function (phoneNumber, updatePhoneNumber, _options) {
+        return this.updatePhoneNumberWithHttpInfo(phoneNumber, updatePhoneNumber, _options).pipe((0, rxjsStub_2.map)(function (apiResponse) { return apiResponse.data; }));
     };
     return ObservablePhoneNumbersApi;
 }());

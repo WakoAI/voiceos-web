@@ -1,5 +1,6 @@
+import { WakoApiModelsPhoneNumberProvider } from '../models/WakoApiModelsPhoneNumberProvider';
 export declare class TwilioTelephony {
-    'provider'?: TwilioTelephonyProviderEnum;
+    'provider': WakoApiModelsPhoneNumberProvider;
     'phoneNumberSid': string;
     'accountSid'?: string;
     'authToken'?: string;
@@ -17,7 +18,4 @@ export declare class TwilioTelephony {
         format: string;
     }[];
     constructor();
-}
-export declare enum TwilioTelephonyProviderEnum {
-    Twilio = "twilio"
 }

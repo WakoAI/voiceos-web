@@ -18,13 +18,7 @@ var OpenAI = (function () {
         {
             "name": "model",
             "baseName": "model",
-            "type": "ChatGPT",
-            "format": ""
-        },
-        {
-            "name": "functions",
-            "baseName": "functions",
-            "type": "Array<OpenAIFunction>",
+            "type": "Model3",
             "format": ""
         }
     ];

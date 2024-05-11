@@ -1,6 +1,13 @@
 export declare enum EventName {
-    OpenaiFunctionCallTriggered = "openai_function_call_triggered",
-    CallStarted = "call_started",
-    Message = "message",
-    CallEnded = "call_ended"
+    PhoneCallconnectionRequested = "phone_call:connection_requested",
+    PhoneCallrejected = "phone_call:rejected",
+    PhoneCallaccepted = "phone_call:accepted",
+    FunctionCalltriggered = "function_call:triggered",
+    Conversationstarted = "conversation:started",
+    Conversationended = "conversation:ended",
+    Conversationduration = "conversation:duration",
+    Speechstarted = "speech:started",
+    Speechended = "speech:ended",
+    Messagesent = "message:sent",
+    Messagegenerated = "message:generated"
 }

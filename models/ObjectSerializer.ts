@@ -1,53 +1,58 @@
-export * from '../models/Agent';
 export * from '../models/AgentConfiguration';
 export * from '../models/AgentCost';
-export * from '../models/AgentLanguage';
 export * from '../models/AgentPagination';
 export * from '../models/AgentProvider';
 export * from '../models/AgentResponse';
 export * from '../models/AzureLanguages';
 export * from '../models/AzureModel';
-export * from '../models/AzureSynthesizer';
 export * from '../models/AzureTranscriber';
+export * from '../models/AzureTranscriberLanguagesInner';
+export * from '../models/AzureVoice';
 export * from '../models/BuyPhoneNumber';
-export * from '../models/CallCost';
-export * from '../models/CallRecording';
-export * from '../models/CallResponse';
-export * from '../models/CallStatus';
-export * from '../models/CallType';
-export * from '../models/CallsPagination';
 export * from '../models/ChatGPT';
+export * from '../models/ConversationCost';
+export * from '../models/ConversationRecording';
+export * from '../models/ConversationResponse';
+export * from '../models/ConversationStatus';
+export * from '../models/ConversationType';
+export * from '../models/ConversationsPagination';
 export * from '../models/CreateCall';
-export * from '../models/CreateCallResponse';
-export * from '../models/Currency';
 export * from '../models/DeepgramLanguages';
-export * from '../models/DeepgramModel';
 export * from '../models/DeepgramTranscriber';
+export * from '../models/DeepgramVoice';
 export * from '../models/ElevenLabsModel';
-export * from '../models/ElevenLabsSynthesizer';
+export * from '../models/ElevenLabsVoices';
+export * from '../models/ElevenlabsVoice';
 export * from '../models/EndedReasons';
-export * from '../models/Event';
 export * from '../models/EventName';
-export * from '../models/EventVariableName';
 export * from '../models/HTTPValidationError';
+export * from '../models/Language';
 export * from '../models/LanguageModelCost';
 export * from '../models/Message';
 export * from '../models/MessageRole';
 export * from '../models/MethodEnum';
+export * from '../models/Model';
+export * from '../models/Model1';
+export * from '../models/Model2';
+export * from '../models/Model3';
+export * from '../models/Model4';
 export * from '../models/OpenAI';
-export * from '../models/OpenAIFunction';
-export * from '../models/OpenAIFunctionParameter';
-export * from '../models/OpenAIFunctionType';
 export * from '../models/PhoneNumber';
+export * from '../models/PhoneNumberEvents';
 export * from '../models/PhoneNumberPagination';
 export * from '../models/PhoneNumberResponse';
 export * from '../models/PhoneNumberToBuy';
-export * from '../models/RimeSynthesizer';
-export * from '../models/SynthesizerCost';
+export * from '../models/PhoneNumberWebhook';
+export * from '../models/PlayHTModel';
+export * from '../models/PlayhtVoice';
+export * from '../models/RimeSpeaker';
+export * from '../models/RimeVoice';
+export * from '../models/Speaker';
 export * from '../models/TelephonyCost';
 export * from '../models/Transcriber';
 export * from '../models/Transcriber1';
 export * from '../models/TranscriberCost';
+export * from '../models/TwilioPhoneCall';
 export * from '../models/TwilioTelephony';
 export * from '../models/UpdateAgent';
 export * from '../models/UpdatePhoneNumber';
@@ -55,72 +60,85 @@ export * from '../models/ValidationError';
 export * from '../models/ValidationErrorLocInner';
 export * from '../models/Voice';
 export * from '../models/Voice1';
+export * from '../models/VoiceCost';
+export * from '../models/VoiceId';
 export * from '../models/WakoApiModelsLanguageModelProvider';
 export * from '../models/WakoApiModelsPhoneNumberProvider';
+export * from '../models/WakoApiModelsSynthesizerDeepgramModel';
 export * from '../models/WakoApiModelsSynthesizerProvider';
+export * from '../models/WakoApiModelsTranscriberDeepgramModel';
 export * from '../models/WakoApiModelsTranscriberProvider';
 export * from '../models/Webhook';
 
-import { Agent               } from '../models/Agent';
-import { AgentConfiguration          } from '../models/AgentConfiguration';
-import { AgentCost     } from '../models/AgentCost';
-import { AgentLanguage } from '../models/AgentLanguage';
+import { AgentConfiguration } from '../models/AgentConfiguration';
+import { AgentCost    } from '../models/AgentCost';
 import { AgentPagination } from '../models/AgentPagination';
 import { AgentProvider } from '../models/AgentProvider';
-import { AgentResponse               } from '../models/AgentResponse';
+import { AgentResponse } from '../models/AgentResponse';
 import { AzureLanguages } from '../models/AzureLanguages';
 import { AzureModel } from '../models/AzureModel';
-import { AzureSynthesizer, AzureSynthesizerProviderEnum      } from '../models/AzureSynthesizer';
 import { AzureTranscriber, AzureTranscriberProviderEnum    } from '../models/AzureTranscriber';
-import { BuyPhoneNumber, BuyPhoneNumberProviderEnum    } from '../models/BuyPhoneNumber';
-import { CallCost        } from '../models/CallCost';
-import { CallRecording } from '../models/CallRecording';
-import { CallResponse               } from '../models/CallResponse';
-import { CallStatus } from '../models/CallStatus';
-import { CallType } from '../models/CallType';
-import { CallsPagination } from '../models/CallsPagination';
+import { AzureTranscriberLanguagesInner } from '../models/AzureTranscriberLanguagesInner';
+import { AzureVoice, AzureVoiceProviderEnum      } from '../models/AzureVoice';
+import { BuyPhoneNumber   } from '../models/BuyPhoneNumber';
 import { ChatGPT } from '../models/ChatGPT';
+import { ConversationCost } from '../models/ConversationCost';
+import { ConversationRecording } from '../models/ConversationRecording';
+import { ConversationResponse              } from '../models/ConversationResponse';
+import { ConversationStatus } from '../models/ConversationStatus';
+import { ConversationType } from '../models/ConversationType';
+import { ConversationsPagination } from '../models/ConversationsPagination';
 import { CreateCall } from '../models/CreateCall';
-import { CreateCallResponse } from '../models/CreateCallResponse';
-import { Currency } from '../models/Currency';
 import { DeepgramLanguages } from '../models/DeepgramLanguages';
-import { DeepgramModel } from '../models/DeepgramModel';
 import { DeepgramTranscriber, DeepgramTranscriberProviderEnum      } from '../models/DeepgramTranscriber';
+import { DeepgramVoice, DeepgramVoiceProviderEnum    } from '../models/DeepgramVoice';
 import { ElevenLabsModel } from '../models/ElevenLabsModel';
-import { ElevenLabsSynthesizer, ElevenLabsSynthesizerProviderEnum     } from '../models/ElevenLabsSynthesizer';
+import { ElevenLabsVoices } from '../models/ElevenLabsVoices';
+import { ElevenlabsVoice, ElevenlabsVoiceProviderEnum         } from '../models/ElevenlabsVoice';
 import { EndedReasons } from '../models/EndedReasons';
-import { Event } from '../models/Event';
 import { EventName } from '../models/EventName';
-import { EventVariableName } from '../models/EventVariableName';
 import { HTTPValidationError } from '../models/HTTPValidationError';
-import { LanguageModelCost      } from '../models/LanguageModelCost';
+import { Language } from '../models/Language';
+import { LanguageModelCost     } from '../models/LanguageModelCost';
 import { Message   } from '../models/Message';
 import { MessageRole } from '../models/MessageRole';
 import { MethodEnum } from '../models/MethodEnum';
-import { OpenAI, OpenAIProviderEnum     } from '../models/OpenAI';
-import { OpenAIFunction } from '../models/OpenAIFunction';
-import { OpenAIFunctionParameter    } from '../models/OpenAIFunctionParameter';
-import { OpenAIFunctionType } from '../models/OpenAIFunctionType';
+import { Model } from '../models/Model';
+import { Model1 } from '../models/Model1';
+import { Model2 } from '../models/Model2';
+import { Model3 } from '../models/Model3';
+import { Model4 } from '../models/Model4';
+import { OpenAI, OpenAIProviderEnum    } from '../models/OpenAI';
 import { PhoneNumber } from '../models/PhoneNumber';
+import { PhoneNumberEvents } from '../models/PhoneNumberEvents';
 import { PhoneNumberPagination } from '../models/PhoneNumberPagination';
 import { PhoneNumberResponse } from '../models/PhoneNumberResponse';
-import { PhoneNumberToBuy, PhoneNumberToBuyProviderEnum      } from '../models/PhoneNumberToBuy';
-import { RimeSynthesizer, RimeSynthesizerProviderEnum      } from '../models/RimeSynthesizer';
-import { SynthesizerCost     } from '../models/SynthesizerCost';
-import { TelephonyCost     } from '../models/TelephonyCost';
+import { PhoneNumberToBuy     } from '../models/PhoneNumberToBuy';
+import { PhoneNumberWebhook      } from '../models/PhoneNumberWebhook';
+import { PlayHTModel } from '../models/PlayHTModel';
+import { PlayhtVoice, PlayhtVoiceProviderEnum        } from '../models/PlayhtVoice';
+import { RimeSpeaker } from '../models/RimeSpeaker';
+import { RimeVoice, RimeVoiceProviderEnum      } from '../models/RimeVoice';
+import { Speaker } from '../models/Speaker';
+import { TelephonyCost    } from '../models/TelephonyCost';
 import { Transcriber, TranscriberProviderEnum       } from '../models/Transcriber';
 import { Transcriber1, Transcriber1ProviderEnum       } from '../models/Transcriber1';
-import { TranscriberCost     } from '../models/TranscriberCost';
-import { TwilioTelephony, TwilioTelephonyProviderEnum      } from '../models/TwilioTelephony';
-import { UpdateAgent          } from '../models/UpdateAgent';
+import { TranscriberCost    } from '../models/TranscriberCost';
+import { TwilioPhoneCall, TwilioPhoneCallProviderEnum     } from '../models/TwilioPhoneCall';
+import { TwilioTelephony     } from '../models/TwilioTelephony';
+import { UpdateAgent } from '../models/UpdateAgent';
 import { UpdatePhoneNumber } from '../models/UpdatePhoneNumber';
 import { ValidationError } from '../models/ValidationError';
 import { ValidationErrorLocInner } from '../models/ValidationErrorLocInner';
-import { Voice, VoiceProviderEnum          } from '../models/Voice';
-import { Voice1, Voice1ProviderEnum          } from '../models/Voice1';
+import { Voice, VoiceProviderEnum                   } from '../models/Voice';
+import { Voice1, Voice1ProviderEnum                   } from '../models/Voice1';
+import { VoiceCost    } from '../models/VoiceCost';
+import { VoiceId } from '../models/VoiceId';
 import { WakoApiModelsLanguageModelProvider } from '../models/WakoApiModelsLanguageModelProvider';
 import { WakoApiModelsPhoneNumberProvider } from '../models/WakoApiModelsPhoneNumberProvider';
+import { WakoApiModelsSynthesizerDeepgramModel } from '../models/WakoApiModelsSynthesizerDeepgramModel';
 import { WakoApiModelsSynthesizerProvider } from '../models/WakoApiModelsSynthesizerProvider';
+import { WakoApiModelsTranscriberDeepgramModel } from '../models/WakoApiModelsTranscriberDeepgramModel';
 import { WakoApiModelsTranscriberProvider } from '../models/WakoApiModelsTranscriberProvider';
 import { Webhook      } from '../models/Webhook';
 
@@ -137,76 +155,83 @@ let primitives = [
                  ];
 
 let enumsMap: Set<string> = new Set<string>([
-    "AgentLanguage",
     "AgentProvider",
     "AzureLanguages",
     "AzureModel",
-    "AzureSynthesizerProviderEnum",
     "AzureTranscriberProviderEnum",
-    "BuyPhoneNumberProviderEnum",
-    "CallStatus",
-    "CallType",
+    "AzureVoiceProviderEnum",
     "ChatGPT",
-    "Currency",
+    "ConversationStatus",
+    "ConversationType",
     "DeepgramLanguages",
-    "DeepgramModel",
     "DeepgramTranscriberProviderEnum",
+    "DeepgramVoiceProviderEnum",
     "ElevenLabsModel",
-    "ElevenLabsSynthesizerProviderEnum",
+    "ElevenLabsVoices",
+    "ElevenlabsVoiceProviderEnum",
     "EndedReasons",
     "EventName",
-    "EventVariableName",
     "MessageRole",
     "MethodEnum",
     "OpenAIProviderEnum",
-    "OpenAIFunctionType",
-    "PhoneNumberToBuyProviderEnum",
-    "RimeSynthesizerProviderEnum",
+    "PhoneNumberEvents",
+    "PlayHTModel",
+    "PlayhtVoiceProviderEnum",
+    "RimeSpeaker",
+    "RimeVoiceProviderEnum",
     "TranscriberProviderEnum",
     "Transcriber1ProviderEnum",
-    "TwilioTelephonyProviderEnum",
+    "TwilioPhoneCallProviderEnum",
     "VoiceProviderEnum",
     "Voice1ProviderEnum",
     "WakoApiModelsLanguageModelProvider",
     "WakoApiModelsPhoneNumberProvider",
+    "WakoApiModelsSynthesizerDeepgramModel",
     "WakoApiModelsSynthesizerProvider",
+    "WakoApiModelsTranscriberDeepgramModel",
     "WakoApiModelsTranscriberProvider",
 ]);
 
 let typeMap: {[index: string]: any} = {
-    "Agent": Agent,
     "AgentConfiguration": AgentConfiguration,
     "AgentCost": AgentCost,
     "AgentPagination": AgentPagination,
     "AgentResponse": AgentResponse,
-    "AzureSynthesizer": AzureSynthesizer,
     "AzureTranscriber": AzureTranscriber,
+    "AzureTranscriberLanguagesInner": AzureTranscriberLanguagesInner,
+    "AzureVoice": AzureVoice,
     "BuyPhoneNumber": BuyPhoneNumber,
-    "CallCost": CallCost,
-    "CallRecording": CallRecording,
-    "CallResponse": CallResponse,
-    "CallsPagination": CallsPagination,
+    "ConversationCost": ConversationCost,
+    "ConversationRecording": ConversationRecording,
+    "ConversationResponse": ConversationResponse,
+    "ConversationsPagination": ConversationsPagination,
     "CreateCall": CreateCall,
-    "CreateCallResponse": CreateCallResponse,
     "DeepgramTranscriber": DeepgramTranscriber,
-    "ElevenLabsSynthesizer": ElevenLabsSynthesizer,
-    "Event": Event,
+    "DeepgramVoice": DeepgramVoice,
+    "ElevenlabsVoice": ElevenlabsVoice,
     "HTTPValidationError": HTTPValidationError,
+    "Language": Language,
     "LanguageModelCost": LanguageModelCost,
     "Message": Message,
+    "Model": Model,
+    "Model1": Model1,
+    "Model2": Model2,
+    "Model3": Model3,
+    "Model4": Model4,
     "OpenAI": OpenAI,
-    "OpenAIFunction": OpenAIFunction,
-    "OpenAIFunctionParameter": OpenAIFunctionParameter,
     "PhoneNumber": PhoneNumber,
     "PhoneNumberPagination": PhoneNumberPagination,
     "PhoneNumberResponse": PhoneNumberResponse,
     "PhoneNumberToBuy": PhoneNumberToBuy,
-    "RimeSynthesizer": RimeSynthesizer,
-    "SynthesizerCost": SynthesizerCost,
+    "PhoneNumberWebhook": PhoneNumberWebhook,
+    "PlayhtVoice": PlayhtVoice,
+    "RimeVoice": RimeVoice,
+    "Speaker": Speaker,
     "TelephonyCost": TelephonyCost,
     "Transcriber": Transcriber,
     "Transcriber1": Transcriber1,
     "TranscriberCost": TranscriberCost,
+    "TwilioPhoneCall": TwilioPhoneCall,
     "TwilioTelephony": TwilioTelephony,
     "UpdateAgent": UpdateAgent,
     "UpdatePhoneNumber": UpdatePhoneNumber,
@@ -214,6 +239,8 @@ let typeMap: {[index: string]: any} = {
     "ValidationErrorLocInner": ValidationErrorLocInner,
     "Voice": Voice,
     "Voice1": Voice1,
+    "VoiceCost": VoiceCost,
+    "VoiceId": VoiceId,
     "Webhook": Webhook,
 }
 

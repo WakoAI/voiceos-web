@@ -22,15 +22,58 @@ import { UpdatePhoneNumber } from '../models/UpdatePhoneNumber';
 export class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
+     * Available Phone Numbers To Buy
+     * @param contains The digits that the phone number contains.
+     * @param limit The number of available phone numbers to return.
+     */
+    public async availableNumbersToBuy(contains?: string, limit?: number, _options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
+
+
+
+        // Path Params
+        const localVarPath = '/phone_numbers/buy';
+
+        // Make Request Context
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (contains !== undefined) {
+            requestContext.setQueryParam("contains", ObjectSerializer.serialize(contains, "string", ""));
+        }
+
+        // Query Params
+        if (limit !== undefined) {
+            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
+        }
+
+
+        let authMethod: SecurityAuthentication | undefined;
+        // Apply auth methods
+        authMethod = _config.authMethods["Bearer"]
+        if (authMethod?.applySecurityAuthentication) {
+            await authMethod?.applySecurityAuthentication(requestContext);
+        }
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
      * Buy Phone Number
      * @param buyPhoneNumber 
      */
-    public async buyPhoneNumberPhoneNumbersBuyPost(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Promise<RequestContext> {
+    public async buyPhoneNumber(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'buyPhoneNumber' is not null or undefined
         if (buyPhoneNumber === null || buyPhoneNumber === undefined) {
-            throw new RequiredError("PhoneNumbersApi", "buyPhoneNumberPhoneNumbersBuyPost", "buyPhoneNumber");
+            throw new RequiredError("PhoneNumbersApi", "buyPhoneNumber", "buyPhoneNumber");
         }
 
 
@@ -55,7 +98,7 @@ export class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
+        authMethod = _config.authMethods["Bearer"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
@@ -70,15 +113,15 @@ export class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      * Delete Phone Number
-     * @param phoneNumber 
+     * @param phoneNumber The phone number including the country code.
      * @param releasePhoneNumber 
      */
-    public async deletePhoneNumberPhoneNumbersPhoneNumberDelete(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async deletePhoneNumber(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'phoneNumber' is not null or undefined
         if (phoneNumber === null || phoneNumber === undefined) {
-            throw new RequiredError("PhoneNumbersApi", "deletePhoneNumberPhoneNumbersPhoneNumberDelete", "phoneNumber");
+            throw new RequiredError("PhoneNumbersApi", "deletePhoneNumber", "phoneNumber");
         }
 
 
@@ -99,7 +142,7 @@ export class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
+        authMethod = _config.authMethods["Bearer"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
@@ -114,7 +157,7 @@ export class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      * Get Phone Number
-     * @param phoneNumber 
+     * @param phoneNumber The phone number including the country code.
      */
     public async getPhoneNumber(phoneNumber: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
@@ -136,57 +179,7 @@ export class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
-        if (authMethod?.applySecurityAuthentication) {
-            await authMethod?.applySecurityAuthentication(requestContext);
-        }
-        
-        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
-        if (defaultAuth?.applySecurityAuthentication) {
-            await defaultAuth?.applySecurityAuthentication(requestContext);
-        }
-
-        return requestContext;
-    }
-
-    /**
-     * List Available Phone Numbers
-     * @param areaCode 
-     * @param contains 
-     * @param limit 
-     */
-    public async listAvailablePhoneNumbers(areaCode?: string, contains?: string, limit?: number, _options?: Configuration): Promise<RequestContext> {
-        let _config = _options || this.configuration;
-
-
-
-
-        // Path Params
-        const localVarPath = '/phone_numbers/buy';
-
-        // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-        // Query Params
-        if (areaCode !== undefined) {
-            requestContext.setQueryParam("area_code", ObjectSerializer.serialize(areaCode, "string", ""));
-        }
-
-        // Query Params
-        if (contains !== undefined) {
-            requestContext.setQueryParam("contains", ObjectSerializer.serialize(contains, "string", ""));
-        }
-
-        // Query Params
-        if (limit !== undefined) {
-            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
-        }
-
-
-        let authMethod: SecurityAuthentication | undefined;
-        // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
+        authMethod = _config.authMethods["Bearer"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
@@ -201,12 +194,12 @@ export class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      * List Phone Numbers
-     * @param createdAfter 
-     * @param createdBefore 
-     * @param index 
-     * @param size 
+     * @param createdAfter The date the phone number was created after.
+     * @param createdBefore The date the phone number was created before.
+     * @param index The index of the page to return.
+     * @param limit The number of phone numbers to return in the page.
      */
-    public async listPhoneNumbers(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Promise<RequestContext> {
+    public async listPhoneNumbers(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
 
@@ -236,14 +229,14 @@ export class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
-        if (size !== undefined) {
-            requestContext.setQueryParam("size", ObjectSerializer.serialize(size, "number", ""));
+        if (limit !== undefined) {
+            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
         }
 
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
+        authMethod = _config.authMethods["Bearer"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
@@ -258,21 +251,21 @@ export class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      * Update Phone Number
-     * @param phoneNumber 
+     * @param phoneNumber The phone number including the country code.
      * @param updatePhoneNumber 
      */
-    public async updatePhoneNumberPhoneNumbersPhoneNumberPatch(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Promise<RequestContext> {
+    public async updatePhoneNumber(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'phoneNumber' is not null or undefined
         if (phoneNumber === null || phoneNumber === undefined) {
-            throw new RequiredError("PhoneNumbersApi", "updatePhoneNumberPhoneNumbersPhoneNumberPatch", "phoneNumber");
+            throw new RequiredError("PhoneNumbersApi", "updatePhoneNumber", "phoneNumber");
         }
 
 
         // verify required parameter 'updatePhoneNumber' is not null or undefined
         if (updatePhoneNumber === null || updatePhoneNumber === undefined) {
-            throw new RequiredError("PhoneNumbersApi", "updatePhoneNumberPhoneNumbersPhoneNumberPatch", "updatePhoneNumber");
+            throw new RequiredError("PhoneNumbersApi", "updatePhoneNumber", "updatePhoneNumber");
         }
 
 
@@ -298,7 +291,7 @@ export class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
+        authMethod = _config.authMethods["Bearer"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
@@ -319,10 +312,46 @@ export class PhoneNumbersApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to buyPhoneNumberPhoneNumbersBuyPost
+     * @params response Response returned by the server for a request to availableNumbersToBuy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumberResponse >> {
+     public async availableNumbersToBuyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<PhoneNumberToBuy> >> {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: Array<PhoneNumberToBuy> = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "Array<PhoneNumberToBuy>", ""
+            ) as Array<PhoneNumberToBuy>;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+        if (isCodeInRange("422", response.httpStatusCode)) {
+            const body: HTTPValidationError = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "HTTPValidationError", ""
+            ) as HTTPValidationError;
+            throw new ApiException<HTTPValidationError>(response.httpStatusCode, "Validation Error", body, response.headers);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: Array<PhoneNumberToBuy> = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "Array<PhoneNumberToBuy>", ""
+            ) as Array<PhoneNumberToBuy>;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+
+        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to buyPhoneNumber
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async buyPhoneNumberWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumberResponse >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: PhoneNumberResponse = ObjectSerializer.deserialize(
@@ -355,10 +384,10 @@ export class PhoneNumbersApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to deletePhoneNumberPhoneNumbersPhoneNumberDelete
+     * @params response Response returned by the server for a request to deletePhoneNumber
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumber >> {
+     public async deletePhoneNumberWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumber >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: PhoneNumber = ObjectSerializer.deserialize(
@@ -427,42 +456,6 @@ export class PhoneNumbersApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to listAvailablePhoneNumbers
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async listAvailablePhoneNumbersWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<PhoneNumberToBuy> >> {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Array<PhoneNumberToBuy> = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<PhoneNumberToBuy>", ""
-            ) as Array<PhoneNumberToBuy>;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-        if (isCodeInRange("422", response.httpStatusCode)) {
-            const body: HTTPValidationError = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "HTTPValidationError", ""
-            ) as HTTPValidationError;
-            throw new ApiException<HTTPValidationError>(response.httpStatusCode, "Validation Error", body, response.headers);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<PhoneNumberToBuy> = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<PhoneNumberToBuy>", ""
-            ) as Array<PhoneNumberToBuy>;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
-    }
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to listPhoneNumbers
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -499,10 +492,10 @@ export class PhoneNumbersApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updatePhoneNumberPhoneNumbersPhoneNumberPatch
+     * @params response Response returned by the server for a request to updatePhoneNumber
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumberResponse >> {
+     public async updatePhoneNumberWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumberResponse >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: PhoneNumberResponse = ObjectSerializer.deserialize(

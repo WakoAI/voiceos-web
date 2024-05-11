@@ -10,12 +10,6 @@ var AgentResponse = (function () {
     AgentResponse.discriminator = undefined;
     AgentResponse.attributeTypeMap = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "initialMessage",
             "baseName": "initial_message",
             "type": "string",
@@ -28,9 +22,9 @@ var AgentResponse = (function () {
             "format": ""
         },
         {
-            "name": "language",
-            "baseName": "language",
-            "type": "AgentLanguage",
+            "name": "voice",
+            "baseName": "voice",
+            "type": "Voice",
             "format": ""
         },
         {
@@ -40,20 +34,14 @@ var AgentResponse = (function () {
             "format": ""
         },
         {
-            "name": "voice",
-            "baseName": "voice",
-            "type": "Voice",
-            "format": ""
-        },
-        {
             "name": "transcriber",
             "baseName": "transcriber",
             "type": "Transcriber",
             "format": ""
         },
         {
-            "name": "maxCallDuration",
-            "baseName": "max_call_duration",
+            "name": "maxDurationSeconds",
+            "baseName": "max_duration_seconds",
             "type": "number",
             "format": ""
         },
@@ -64,9 +52,9 @@ var AgentResponse = (function () {
             "format": ""
         },
         {
-            "name": "id",
-            "baseName": "id",
-            "type": "string",
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }",
             "format": ""
         },
         {
@@ -92,6 +80,12 @@ var AgentResponse = (function () {
             "baseName": "updated_at",
             "type": "Date",
             "format": "date-time"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string",
+            "format": ""
         }
     ];
     return AgentResponse;

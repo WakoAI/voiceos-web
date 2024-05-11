@@ -1,9 +1,9 @@
-import { DeepgramLanguages } from '../models/DeepgramLanguages';
-import { DeepgramModel } from '../models/DeepgramModel';
+import { Language } from '../models/Language';
+import { Model1 } from '../models/Model1';
 export declare class DeepgramTranscriber {
     'provider'?: DeepgramTranscriberProviderEnum;
-    'model'?: DeepgramModel;
-    'language'?: DeepgramLanguages;
+    'model'?: Model1;
+    'language'?: Language;
     'keywords'?: Array<string>;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{

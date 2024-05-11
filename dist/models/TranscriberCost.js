@@ -26,12 +26,6 @@ var TranscriberCost = (function () {
             "baseName": "seconds",
             "type": "number",
             "format": ""
-        },
-        {
-            "name": "external",
-            "baseName": "external",
-            "type": "boolean",
-            "format": ""
         }
     ];
     return TranscriberCost;

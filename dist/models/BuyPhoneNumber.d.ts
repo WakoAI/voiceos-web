@@ -1,6 +1,7 @@
+import { WakoApiModelsPhoneNumberProvider } from '../models/WakoApiModelsPhoneNumberProvider';
 export declare class BuyPhoneNumber {
-    'provider'?: BuyPhoneNumberProviderEnum;
-    'phoneNumber': string;
+    'provider'?: WakoApiModelsPhoneNumberProvider;
+    'phoneNumber'?: string;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{
         name: string;
@@ -15,7 +16,4 @@ export declare class BuyPhoneNumber {
         format: string;
     }[];
     constructor();
-}
-export declare enum BuyPhoneNumberProviderEnum {
-    Twilio = "twilio"
 }

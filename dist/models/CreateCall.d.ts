@@ -1,8 +1,9 @@
-import { Agent } from '../models/Agent';
+import { AgentConfiguration } from '../models/AgentConfiguration';
 export declare class CreateCall {
-    'toNumber': string;
     'fromNumber': string;
-    'agent': Agent;
+    'toNumber': string;
+    'agentId'?: string;
+    'agentConfig'?: AgentConfiguration;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{
         name: string;

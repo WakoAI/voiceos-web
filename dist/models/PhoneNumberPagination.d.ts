@@ -2,7 +2,7 @@ import { PhoneNumberResponse } from '../models/PhoneNumberResponse';
 export declare class PhoneNumberPagination {
     'items': Array<PhoneNumberResponse>;
     'index': number;
-    'hasNext': boolean;
+    'hasMore': boolean;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{
         name: string;

@@ -1,9 +1,9 @@
-import { DeepgramLanguages } from '../models/DeepgramLanguages';
-import { DeepgramModel } from '../models/DeepgramModel';
+import { Language } from '../models/Language';
+import { Model1 } from '../models/Model1';
 export declare class Transcriber1 {
     'provider'?: Transcriber1ProviderEnum | null;
-    'model'?: DeepgramModel;
-    'language'?: DeepgramLanguages;
+    'model'?: Model1;
+    'language'?: Language;
     'keywords'?: any | null;
     'languages'?: any | null;
     static readonly discriminator: string | undefined;

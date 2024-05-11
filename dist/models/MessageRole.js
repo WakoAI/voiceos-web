@@ -4,6 +4,6 @@ exports.MessageRole = void 0;
 var MessageRole;
 (function (MessageRole) {
     MessageRole["Agent"] = "agent";
-    MessageRole["Human"] = "human";
+    MessageRole["User"] = "user";
 })(MessageRole = exports.MessageRole || (exports.MessageRole = {}));
 //# sourceMappingURL=MessageRole.js.map

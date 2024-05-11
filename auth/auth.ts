@@ -22,50 +22,29 @@ export interface TokenProvider {
 }
 
 /**
- * Applies apiKey authentication to the request context.
+ * Applies http authentication to the request context.
  */
-export class APIKeyHeaderAuthentication implements SecurityAuthentication {
+export class BearerAuthentication implements SecurityAuthentication {
     /**
-     * Configures this api key authentication with the necessary properties
+     * Configures the http authentication with the required details.
      *
-     * @param apiKey: The api key to be used for every request
+     * @param tokenProvider service that can provide the up-to-date token when needed
      */
-    public constructor(private apiKey: string) {}
+    public constructor(private tokenProvider: TokenProvider) {}
 
     public getName(): string {
-        return "APIKeyHeader";
+        return "Bearer";
     }
 
-    public applySecurityAuthentication(context: RequestContext) {
-        context.setHeaderParam("X-API-KEY", this.apiKey);
-    }
-}
-
-/**
- * Applies apiKey authentication to the request context.
- */
-export class XAPIKEYAuthentication implements SecurityAuthentication {
-    /**
-     * Configures this api key authentication with the necessary properties
-     *
-     * @param apiKey: The api key to be used for every request
-     */
-    public constructor(private apiKey: string) {}
-
-    public getName(): string {
-        return "X-API-KEY";
-    }
-
-    public applySecurityAuthentication(context: RequestContext) {
-        context.setHeaderParam("X-API-KEY", this.apiKey);
+    public async applySecurityAuthentication(context: RequestContext) {
+        context.setHeaderParam("Authorization", "Bearer " + await this.tokenProvider.getToken());
     }
 }
 
 
 export type AuthMethods = {
     "default"?: SecurityAuthentication,
-    "APIKeyHeader"?: SecurityAuthentication,
-    "X-API-KEY"?: SecurityAuthentication
+    "Bearer"?: SecurityAuthentication
 }
 
 export type ApiKeyConfiguration = string;
@@ -75,8 +54,7 @@ export type OAuth2Configuration = { accessToken: string };
 
 export type AuthMethodsConfiguration = {
     "default"?: SecurityAuthentication,
-    "APIKeyHeader"?: ApiKeyConfiguration,
-    "X-API-KEY"?: ApiKeyConfiguration
+    "Bearer"?: HttpBearerConfiguration
 }
 
 /**
@@ -91,15 +69,9 @@ export function configureAuthMethods(config: AuthMethodsConfiguration | undefine
     }
     authMethods["default"] = config["default"]
 
-    if (config["APIKeyHeader"]) {
-        authMethods["APIKeyHeader"] = new APIKeyHeaderAuthentication(
-            config["APIKeyHeader"]
-        );
-    }
-
-    if (config["X-API-KEY"]) {
-        authMethods["X-API-KEY"] = new XAPIKEYAuthentication(
-            config["X-API-KEY"]
+    if (config["Bearer"]) {
+        authMethods["Bearer"] = new BearerAuthentication(
+            config["Bearer"]["tokenProvider"]
         );
     }
 

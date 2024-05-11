@@ -32,12 +32,6 @@ var LanguageModelCost = (function () {
             "baseName": "output_tokens",
             "type": "number",
             "format": ""
-        },
-        {
-            "name": "external",
-            "baseName": "external",
-            "type": "boolean",
-            "format": ""
         }
     ];
     return LanguageModelCost;

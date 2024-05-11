@@ -27,6 +27,6 @@ var ServerConfiguration = (function () {
     return ServerConfiguration;
 }());
 exports.ServerConfiguration = ServerConfiguration;
-exports.server1 = new ServerConfiguration("https://api.wako.ai", {});
+exports.server1 = new ServerConfiguration("https://api.voiceos.io", {});
 exports.servers = [exports.server1];
 //# sourceMappingURL=servers.js.map

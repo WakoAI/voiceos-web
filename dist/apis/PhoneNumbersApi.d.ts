@@ -8,18 +8,18 @@ import { PhoneNumberResponse } from '../models/PhoneNumberResponse';
 import { PhoneNumberToBuy } from '../models/PhoneNumberToBuy';
 import { UpdatePhoneNumber } from '../models/UpdatePhoneNumber';
 export declare class PhoneNumbersApiRequestFactory extends BaseAPIRequestFactory {
-    buyPhoneNumberPhoneNumbersBuyPost(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Promise<RequestContext>;
-    deletePhoneNumberPhoneNumbersPhoneNumberDelete(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Promise<RequestContext>;
+    availableNumbersToBuy(contains?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
+    buyPhoneNumber(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Promise<RequestContext>;
+    deletePhoneNumber(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Promise<RequestContext>;
     getPhoneNumber(phoneNumber: string, _options?: Configuration): Promise<RequestContext>;
-    listAvailablePhoneNumbers(areaCode?: string, contains?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
-    listPhoneNumbers(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Promise<RequestContext>;
-    updatePhoneNumberPhoneNumbersPhoneNumberPatch(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Promise<RequestContext>;
+    listPhoneNumbers(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Promise<RequestContext>;
+    updatePhoneNumber(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class PhoneNumbersApiResponseProcessor {
-    buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumberResponse>>;
-    deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumber>>;
+    availableNumbersToBuyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<PhoneNumberToBuy>>>;
+    buyPhoneNumberWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumberResponse>>;
+    deletePhoneNumberWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumber>>;
     getPhoneNumberWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumberResponse>>;
-    listAvailablePhoneNumbersWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<PhoneNumberToBuy>>>;
     listPhoneNumbersWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumberPagination>>;
-    updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumberResponse>>;
+    updatePhoneNumberWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PhoneNumberResponse>>;
 }

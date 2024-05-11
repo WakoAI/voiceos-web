@@ -5,10 +5,10 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createAgent**](AgentsApi.md#createAgent) | **POST** /agents | Create Agent
-[**deleteAgent**](AgentsApi.md#deleteAgent) | **DELETE** /agents/{agent_id} | Delete Agent
-[**getAgent**](AgentsApi.md#getAgent) | **GET** /agents/{agent_id} | Get Agent
+[**deleteAgent**](AgentsApi.md#deleteAgent) | **DELETE** /agents/{id} | Delete Agent
+[**getAgent**](AgentsApi.md#getAgent) | **GET** /agents/{id} | Get Agent
 [**listAgents**](AgentsApi.md#listAgents) | **GET** /agents | List Agents
-[**updateAgent**](AgentsApi.md#updateAgent) | **PATCH** /agents/{agent_id} | Update Agent
+[**updateAgent**](AgentsApi.md#updateAgent) | **PATCH** /agents/{id} | Update Agent
 
 
 # **createAgent**
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](README.md#APIKeyHeader)
+[Bearer](README.md#Bearer)
 
 ### HTTP request headers
 
@@ -80,8 +80,8 @@ const configuration = .createConfiguration();
 const apiInstance = new .AgentsApi(configuration);
 
 let body:.AgentsApiDeleteAgentRequest = {
-  // string
-  agentId: "agent_id_example",
+  // string | The id of the agent.
+  id: "id_example",
 };
 
 apiInstance.deleteAgent(body).then((data:any) => {
@@ -94,7 +94,7 @@ apiInstance.deleteAgent(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **agentId** | [**string**] |  | defaults to undefined
+ **id** | [**string**] | The id of the agent. | defaults to undefined
 
 
 ### Return type
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](README.md#APIKeyHeader)
+[Bearer](README.md#Bearer)
 
 ### HTTP request headers
 
@@ -134,8 +134,8 @@ const configuration = .createConfiguration();
 const apiInstance = new .AgentsApi(configuration);
 
 let body:.AgentsApiGetAgentRequest = {
-  // string
-  agentId: "agent_id_example",
+  // string | The id of the agent.
+  id: "id_example",
 };
 
 apiInstance.getAgent(body).then((data:any) => {
@@ -148,7 +148,7 @@ apiInstance.getAgent(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **agentId** | [**string**] |  | defaults to undefined
+ **id** | [**string**] | The id of the agent. | defaults to undefined
 
 
 ### Return type
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](README.md#APIKeyHeader)
+[Bearer](README.md#Bearer)
 
 ### HTTP request headers
 
@@ -188,14 +188,14 @@ const configuration = .createConfiguration();
 const apiInstance = new .AgentsApi(configuration);
 
 let body:.AgentsApiListAgentsRequest = {
-  // Date (optional)
+  // Date | The date after which the agent was created. (optional)
   createdAfter: new Date('1970-01-01T00:00:00.00Z'),
-  // Date (optional)
+  // Date | The date before which the agent was created. (optional)
   createdBefore: new Date('1970-01-01T00:00:00.00Z'),
-  // number (optional)
+  // number | The index of the page to return. (optional)
   index: 1,
-  // number (optional)
-  size: 100,
+  // number | The limit of items to return in the page. (optional)
+  limit: 100,
 };
 
 apiInstance.listAgents(body).then((data:any) => {
@@ -208,10 +208,10 @@ apiInstance.listAgents(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createdAfter** | [**Date**] |  | (optional) defaults to undefined
- **createdBefore** | [**Date**] |  | (optional) defaults to undefined
- **index** | [**number**] |  | (optional) defaults to 1
- **size** | [**number**] |  | (optional) defaults to 100
+ **createdAfter** | [**Date**] | The date after which the agent was created. | (optional) defaults to undefined
+ **createdBefore** | [**Date**] | The date before which the agent was created. | (optional) defaults to undefined
+ **index** | [**number**] | The index of the page to return. | (optional) defaults to 1
+ **limit** | [**number**] | The limit of items to return in the page. | (optional) defaults to 100
 
 
 ### Return type
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](README.md#APIKeyHeader)
+[Bearer](README.md#Bearer)
 
 ### HTTP request headers
 
@@ -251,8 +251,8 @@ const configuration = .createConfiguration();
 const apiInstance = new .AgentsApi(configuration);
 
 let body:.AgentsApiUpdateAgentRequest = {
-  // string
-  agentId: "agent_id_example",
+  // string | The id of the agent.
+  id: "id_example",
   // UpdateAgent
   updateAgent: null,
 };
@@ -268,7 +268,7 @@ apiInstance.updateAgent(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **updateAgent** | **UpdateAgent**|  |
- **agentId** | [**string**] |  | defaults to undefined
+ **id** | [**string**] | The id of the agent. | defaults to undefined
 
 
 ### Return type
@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](README.md#APIKeyHeader)
+[Bearer](README.md#Bearer)
 
 ### HTTP request headers
 

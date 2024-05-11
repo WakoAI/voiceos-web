@@ -5,12 +5,11 @@ import { AgentConfiguration } from '../models/AgentConfiguration';
 import { AgentPagination } from '../models/AgentPagination';
 import { AgentResponse } from '../models/AgentResponse';
 import { BuyPhoneNumber } from '../models/BuyPhoneNumber';
-import { CallRecording } from '../models/CallRecording';
-import { CallResponse } from '../models/CallResponse';
-import { CallStatus } from '../models/CallStatus';
-import { CallsPagination } from '../models/CallsPagination';
+import { ConversationRecording } from '../models/ConversationRecording';
+import { ConversationResponse } from '../models/ConversationResponse';
+import { ConversationStatus } from '../models/ConversationStatus';
+import { ConversationsPagination } from '../models/ConversationsPagination';
 import { CreateCall } from '../models/CreateCall';
-import { CreateCallResponse } from '../models/CreateCallResponse';
 import { PhoneNumber } from '../models/PhoneNumber';
 import { PhoneNumberPagination } from '../models/PhoneNumberPagination';
 import { PhoneNumberResponse } from '../models/PhoneNumberResponse';
@@ -25,29 +24,38 @@ export declare class ObservableAgentsApi {
     constructor(configuration: Configuration, requestFactory?: AgentsApiRequestFactory, responseProcessor?: AgentsApiResponseProcessor);
     createAgentWithHttpInfo(agentConfiguration: AgentConfiguration, _options?: Configuration): Observable<HttpInfo<AgentResponse>>;
     createAgent(agentConfiguration: AgentConfiguration, _options?: Configuration): Observable<AgentResponse>;
-    deleteAgentWithHttpInfo(agentId: string, _options?: Configuration): Observable<HttpInfo<AgentResponse>>;
-    deleteAgent(agentId: string, _options?: Configuration): Observable<AgentResponse>;
-    getAgentWithHttpInfo(agentId: string, _options?: Configuration): Observable<HttpInfo<AgentResponse>>;
-    getAgent(agentId: string, _options?: Configuration): Observable<AgentResponse>;
-    listAgentsWithHttpInfo(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Observable<HttpInfo<AgentPagination>>;
-    listAgents(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Observable<AgentPagination>;
-    updateAgentWithHttpInfo(agentId: string, updateAgent: UpdateAgent, _options?: Configuration): Observable<HttpInfo<AgentResponse>>;
-    updateAgent(agentId: string, updateAgent: UpdateAgent, _options?: Configuration): Observable<AgentResponse>;
+    deleteAgentWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<AgentResponse>>;
+    deleteAgent(id: string, _options?: Configuration): Observable<AgentResponse>;
+    getAgentWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<AgentResponse>>;
+    getAgent(id: string, _options?: Configuration): Observable<AgentResponse>;
+    listAgentsWithHttpInfo(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Observable<HttpInfo<AgentPagination>>;
+    listAgents(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Observable<AgentPagination>;
+    updateAgentWithHttpInfo(id: string, updateAgent: UpdateAgent, _options?: Configuration): Observable<HttpInfo<AgentResponse>>;
+    updateAgent(id: string, updateAgent: UpdateAgent, _options?: Configuration): Observable<AgentResponse>;
 }
-import { CallsApiRequestFactory, CallsApiResponseProcessor } from "../apis/CallsApi";
-export declare class ObservableCallsApi {
+import { ConversationsApiRequestFactory, ConversationsApiResponseProcessor } from "../apis/ConversationsApi";
+export declare class ObservableConversationsApi {
     private requestFactory;
     private responseProcessor;
     private configuration;
-    constructor(configuration: Configuration, requestFactory?: CallsApiRequestFactory, responseProcessor?: CallsApiResponseProcessor);
-    createCallWithHttpInfo(createCall: CreateCall, _options?: Configuration): Observable<HttpInfo<CreateCallResponse>>;
-    createCall(createCall: CreateCall, _options?: Configuration): Observable<CreateCallResponse>;
-    getCallWithHttpInfo(callId: string, _options?: Configuration): Observable<HttpInfo<CallResponse>>;
-    getCall(callId: string, _options?: Configuration): Observable<CallResponse>;
-    getRecordingWithHttpInfo(callId: string, _options?: Configuration): Observable<HttpInfo<CallRecording>>;
-    getRecording(callId: string, _options?: Configuration): Observable<CallRecording>;
-    listCallsWithHttpInfo(status?: CallStatus, createdBefore?: Date, createdAfter?: Date, index?: number, size?: number, _options?: Configuration): Observable<HttpInfo<CallsPagination>>;
-    listCalls(status?: CallStatus, createdBefore?: Date, createdAfter?: Date, index?: number, size?: number, _options?: Configuration): Observable<CallsPagination>;
+    constructor(configuration: Configuration, requestFactory?: ConversationsApiRequestFactory, responseProcessor?: ConversationsApiResponseProcessor);
+    createPhoneCallWithHttpInfo(createCall: CreateCall, _options?: Configuration): Observable<HttpInfo<ConversationResponse>>;
+    createPhoneCall(createCall: CreateCall, _options?: Configuration): Observable<ConversationResponse>;
+    getAudioRecordingWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<ConversationRecording>>;
+    getAudioRecording(id: string, _options?: Configuration): Observable<ConversationRecording>;
+    getConversationWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<ConversationResponse>>;
+    getConversation(id: string, _options?: Configuration): Observable<ConversationResponse>;
+    listConversationsWithHttpInfo(status?: ConversationStatus, createdBefore?: Date, createdAfter?: Date, index?: number, limit?: number, _options?: Configuration): Observable<HttpInfo<ConversationsPagination>>;
+    listConversations(status?: ConversationStatus, createdBefore?: Date, createdAfter?: Date, index?: number, limit?: number, _options?: Configuration): Observable<ConversationsPagination>;
+}
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor } from "../apis/DefaultApi";
+export declare class ObservableDefaultApi {
+    private requestFactory;
+    private responseProcessor;
+    private configuration;
+    constructor(configuration: Configuration, requestFactory?: DefaultApiRequestFactory, responseProcessor?: DefaultApiResponseProcessor);
+    healthCheckGetWithHttpInfo(_options?: Configuration): Observable<HttpInfo<any>>;
+    healthCheckGet(_options?: Configuration): Observable<any>;
 }
 import { PhoneNumbersApiRequestFactory, PhoneNumbersApiResponseProcessor } from "../apis/PhoneNumbersApi";
 export declare class ObservablePhoneNumbersApi {
@@ -55,16 +63,16 @@ export declare class ObservablePhoneNumbersApi {
     private responseProcessor;
     private configuration;
     constructor(configuration: Configuration, requestFactory?: PhoneNumbersApiRequestFactory, responseProcessor?: PhoneNumbersApiResponseProcessor);
-    buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Observable<HttpInfo<PhoneNumberResponse>>;
-    buyPhoneNumberPhoneNumbersBuyPost(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Observable<PhoneNumberResponse>;
-    deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Observable<HttpInfo<PhoneNumber>>;
-    deletePhoneNumberPhoneNumbersPhoneNumberDelete(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Observable<PhoneNumber>;
+    availableNumbersToBuyWithHttpInfo(contains?: string, limit?: number, _options?: Configuration): Observable<HttpInfo<Array<PhoneNumberToBuy>>>;
+    availableNumbersToBuy(contains?: string, limit?: number, _options?: Configuration): Observable<Array<PhoneNumberToBuy>>;
+    buyPhoneNumberWithHttpInfo(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Observable<HttpInfo<PhoneNumberResponse>>;
+    buyPhoneNumber(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Observable<PhoneNumberResponse>;
+    deletePhoneNumberWithHttpInfo(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Observable<HttpInfo<PhoneNumber>>;
+    deletePhoneNumber(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Observable<PhoneNumber>;
     getPhoneNumberWithHttpInfo(phoneNumber: string, _options?: Configuration): Observable<HttpInfo<PhoneNumberResponse>>;
     getPhoneNumber(phoneNumber: string, _options?: Configuration): Observable<PhoneNumberResponse>;
-    listAvailablePhoneNumbersWithHttpInfo(areaCode?: string, contains?: string, limit?: number, _options?: Configuration): Observable<HttpInfo<Array<PhoneNumberToBuy>>>;
-    listAvailablePhoneNumbers(areaCode?: string, contains?: string, limit?: number, _options?: Configuration): Observable<Array<PhoneNumberToBuy>>;
-    listPhoneNumbersWithHttpInfo(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Observable<HttpInfo<PhoneNumberPagination>>;
-    listPhoneNumbers(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Observable<PhoneNumberPagination>;
-    updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Observable<HttpInfo<PhoneNumberResponse>>;
-    updatePhoneNumberPhoneNumbersPhoneNumberPatch(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Observable<PhoneNumberResponse>;
+    listPhoneNumbersWithHttpInfo(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Observable<HttpInfo<PhoneNumberPagination>>;
+    listPhoneNumbers(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Observable<PhoneNumberPagination>;
+    updatePhoneNumberWithHttpInfo(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Observable<HttpInfo<PhoneNumberResponse>>;
+    updatePhoneNumber(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Observable<PhoneNumberResponse>;
 }

@@ -1,6 +1,6 @@
 # VoiceOS Web SDK
 
-This package lets you use VoiceOS Web SDK
+This web client lets you build with [VoiceOS](https://voiceos.io)
 
 ## Installation
 
@@ -24,14 +24,14 @@ Create a new instance of the VoiceOS class by passing your Api Key as a paramete
 const voiceos = new VoiceOS('your-api-key');
 ```
 
-You can start using the VoiceOS Web SDK:
+Start using the Web SDK to access the [agent](https://docs.voiceos.io/api-reference/agents/get), [calls](https://docs.voiceos.io/api-reference/conversations/get) and [phone numbers](https://docs.voiceos.io/api-reference/phone-numbers/get) resources.
 
 ```javascript
 const agents = voiceos.agents.listAgents().then((response) => {
     console.log(response);
 });
 
-const calls = voiceos.calls.listCalls().then((response) => {
+const conversations = voiceos.calls.listConversations().then((response) => {
     console.log(response);
 });
 

@@ -62,27 +62,24 @@ var PhoneNumbersApiRequestFactory = (function (_super) {
     function PhoneNumbersApiRequestFactory() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    PhoneNumbersApiRequestFactory.prototype.buyPhoneNumberPhoneNumbersBuyPost = function (buyPhoneNumber, _options) {
+    PhoneNumbersApiRequestFactory.prototype.availableNumbersToBuy = function (contains, limit, _options) {
         var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
-            var _config, localVarPath, requestContext, contentType, serializedBody, authMethod, defaultAuth;
+            var _config, localVarPath, requestContext, authMethod, defaultAuth;
             return __generator(this, function (_d) {
                 switch (_d.label) {
                     case 0:
                         _config = _options || this.configuration;
-                        if (buyPhoneNumber === null || buyPhoneNumber === undefined) {
-                            throw new baseapi_1.RequiredError("PhoneNumbersApi", "buyPhoneNumberPhoneNumbersBuyPost", "buyPhoneNumber");
-                        }
                         localVarPath = '/phone_numbers/buy';
-                        requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethod.POST);
+                        requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethod.GET);
                         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8");
-                        contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
-                            "application/json"
-                        ]);
-                        requestContext.setHeaderParam("Content-Type", contentType);
-                        serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(buyPhoneNumber, "BuyPhoneNumber", ""), contentType);
-                        requestContext.setBody(serializedBody);
-                        authMethod = _config.authMethods["APIKeyHeader"];
+                        if (contains !== undefined) {
+                            requestContext.setQueryParam("contains", ObjectSerializer_1.ObjectSerializer.serialize(contains, "string", ""));
+                        }
+                        if (limit !== undefined) {
+                            requestContext.setQueryParam("limit", ObjectSerializer_1.ObjectSerializer.serialize(limit, "number", ""));
+                        }
+                        authMethod = _config.authMethods["Bearer"];
                         if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
                         return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
                     case 1:
@@ -100,7 +97,45 @@ var PhoneNumbersApiRequestFactory = (function (_super) {
             });
         });
     };
-    PhoneNumbersApiRequestFactory.prototype.deletePhoneNumberPhoneNumbersPhoneNumberDelete = function (phoneNumber, releasePhoneNumber, _options) {
+    PhoneNumbersApiRequestFactory.prototype.buyPhoneNumber = function (buyPhoneNumber, _options) {
+        var _a, _b, _c;
+        return __awaiter(this, void 0, void 0, function () {
+            var _config, localVarPath, requestContext, contentType, serializedBody, authMethod, defaultAuth;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
+                    case 0:
+                        _config = _options || this.configuration;
+                        if (buyPhoneNumber === null || buyPhoneNumber === undefined) {
+                            throw new baseapi_1.RequiredError("PhoneNumbersApi", "buyPhoneNumber", "buyPhoneNumber");
+                        }
+                        localVarPath = '/phone_numbers/buy';
+                        requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethod.POST);
+                        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8");
+                        contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+                            "application/json"
+                        ]);
+                        requestContext.setHeaderParam("Content-Type", contentType);
+                        serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(buyPhoneNumber, "BuyPhoneNumber", ""), contentType);
+                        requestContext.setBody(serializedBody);
+                        authMethod = _config.authMethods["Bearer"];
+                        if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
+                        return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
+                    case 1:
+                        _d.sent();
+                        _d.label = 2;
+                    case 2:
+                        defaultAuth = ((_a = _options === null || _options === void 0 ? void 0 : _options.authMethods) === null || _a === void 0 ? void 0 : _a.default) || ((_c = (_b = this.configuration) === null || _b === void 0 ? void 0 : _b.authMethods) === null || _c === void 0 ? void 0 : _c.default);
+                        if (!(defaultAuth === null || defaultAuth === void 0 ? void 0 : defaultAuth.applySecurityAuthentication)) return [3, 4];
+                        return [4, (defaultAuth === null || defaultAuth === void 0 ? void 0 : defaultAuth.applySecurityAuthentication(requestContext))];
+                    case 3:
+                        _d.sent();
+                        _d.label = 4;
+                    case 4: return [2, requestContext];
+                }
+            });
+        });
+    };
+    PhoneNumbersApiRequestFactory.prototype.deletePhoneNumber = function (phoneNumber, releasePhoneNumber, _options) {
         var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
             var _config, localVarPath, requestContext, authMethod, defaultAuth;
@@ -109,7 +144,7 @@ var PhoneNumbersApiRequestFactory = (function (_super) {
                     case 0:
                         _config = _options || this.configuration;
                         if (phoneNumber === null || phoneNumber === undefined) {
-                            throw new baseapi_1.RequiredError("PhoneNumbersApi", "deletePhoneNumberPhoneNumbersPhoneNumberDelete", "phoneNumber");
+                            throw new baseapi_1.RequiredError("PhoneNumbersApi", "deletePhoneNumber", "phoneNumber");
                         }
                         localVarPath = '/phone_numbers/{phone_number}'
                             .replace('{' + 'phone_number' + '}', encodeURIComponent(String(phoneNumber)));
@@ -118,7 +153,7 @@ var PhoneNumbersApiRequestFactory = (function (_super) {
                         if (releasePhoneNumber !== undefined) {
                             requestContext.setQueryParam("release_phone_number", ObjectSerializer_1.ObjectSerializer.serialize(releasePhoneNumber, "boolean", ""));
                         }
-                        authMethod = _config.authMethods["APIKeyHeader"];
+                        authMethod = _config.authMethods["Bearer"];
                         if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
                         return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
                     case 1:
@@ -151,7 +186,7 @@ var PhoneNumbersApiRequestFactory = (function (_super) {
                             .replace('{' + 'phone_number' + '}', encodeURIComponent(String(phoneNumber)));
                         requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethod.GET);
                         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8");
-                        authMethod = _config.authMethods["APIKeyHeader"];
+                        authMethod = _config.authMethods["Bearer"];
                         if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
                         return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
                     case 1:
@@ -169,45 +204,7 @@ var PhoneNumbersApiRequestFactory = (function (_super) {
             });
         });
     };
-    PhoneNumbersApiRequestFactory.prototype.listAvailablePhoneNumbers = function (areaCode, contains, limit, _options) {
-        var _a, _b, _c;
-        return __awaiter(this, void 0, void 0, function () {
-            var _config, localVarPath, requestContext, authMethod, defaultAuth;
-            return __generator(this, function (_d) {
-                switch (_d.label) {
-                    case 0:
-                        _config = _options || this.configuration;
-                        localVarPath = '/phone_numbers/buy';
-                        requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethod.GET);
-                        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8");
-                        if (areaCode !== undefined) {
-                            requestContext.setQueryParam("area_code", ObjectSerializer_1.ObjectSerializer.serialize(areaCode, "string", ""));
-                        }
-                        if (contains !== undefined) {
-                            requestContext.setQueryParam("contains", ObjectSerializer_1.ObjectSerializer.serialize(contains, "string", ""));
-                        }
-                        if (limit !== undefined) {
-                            requestContext.setQueryParam("limit", ObjectSerializer_1.ObjectSerializer.serialize(limit, "number", ""));
-                        }
-                        authMethod = _config.authMethods["APIKeyHeader"];
-                        if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
-                        return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
-                    case 1:
-                        _d.sent();
-                        _d.label = 2;
-                    case 2:
-                        defaultAuth = ((_a = _options === null || _options === void 0 ? void 0 : _options.authMethods) === null || _a === void 0 ? void 0 : _a.default) || ((_c = (_b = this.configuration) === null || _b === void 0 ? void 0 : _b.authMethods) === null || _c === void 0 ? void 0 : _c.default);
-                        if (!(defaultAuth === null || defaultAuth === void 0 ? void 0 : defaultAuth.applySecurityAuthentication)) return [3, 4];
-                        return [4, (defaultAuth === null || defaultAuth === void 0 ? void 0 : defaultAuth.applySecurityAuthentication(requestContext))];
-                    case 3:
-                        _d.sent();
-                        _d.label = 4;
-                    case 4: return [2, requestContext];
-                }
-            });
-        });
-    };
-    PhoneNumbersApiRequestFactory.prototype.listPhoneNumbers = function (createdAfter, createdBefore, index, size, _options) {
+    PhoneNumbersApiRequestFactory.prototype.listPhoneNumbers = function (createdAfter, createdBefore, index, limit, _options) {
         var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
             var _config, localVarPath, requestContext, authMethod, defaultAuth;
@@ -227,10 +224,10 @@ var PhoneNumbersApiRequestFactory = (function (_super) {
                         if (index !== undefined) {
                             requestContext.setQueryParam("index", ObjectSerializer_1.ObjectSerializer.serialize(index, "number", ""));
                         }
-                        if (size !== undefined) {
-                            requestContext.setQueryParam("size", ObjectSerializer_1.ObjectSerializer.serialize(size, "number", ""));
+                        if (limit !== undefined) {
+                            requestContext.setQueryParam("limit", ObjectSerializer_1.ObjectSerializer.serialize(limit, "number", ""));
                         }
-                        authMethod = _config.authMethods["APIKeyHeader"];
+                        authMethod = _config.authMethods["Bearer"];
                         if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
                         return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
                     case 1:
@@ -248,7 +245,7 @@ var PhoneNumbersApiRequestFactory = (function (_super) {
             });
         });
     };
-    PhoneNumbersApiRequestFactory.prototype.updatePhoneNumberPhoneNumbersPhoneNumberPatch = function (phoneNumber, updatePhoneNumber, _options) {
+    PhoneNumbersApiRequestFactory.prototype.updatePhoneNumber = function (phoneNumber, updatePhoneNumber, _options) {
         var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
             var _config, localVarPath, requestContext, contentType, serializedBody, authMethod, defaultAuth;
@@ -257,10 +254,10 @@ var PhoneNumbersApiRequestFactory = (function (_super) {
                     case 0:
                         _config = _options || this.configuration;
                         if (phoneNumber === null || phoneNumber === undefined) {
-                            throw new baseapi_1.RequiredError("PhoneNumbersApi", "updatePhoneNumberPhoneNumbersPhoneNumberPatch", "phoneNumber");
+                            throw new baseapi_1.RequiredError("PhoneNumbersApi", "updatePhoneNumber", "phoneNumber");
                         }
                         if (updatePhoneNumber === null || updatePhoneNumber === undefined) {
-                            throw new baseapi_1.RequiredError("PhoneNumbersApi", "updatePhoneNumberPhoneNumbersPhoneNumberPatch", "updatePhoneNumber");
+                            throw new baseapi_1.RequiredError("PhoneNumbersApi", "updatePhoneNumber", "updatePhoneNumber");
                         }
                         localVarPath = '/phone_numbers/{phone_number}'
                             .replace('{' + 'phone_number' + '}', encodeURIComponent(String(phoneNumber)));
@@ -272,7 +269,7 @@ var PhoneNumbersApiRequestFactory = (function (_super) {
                         requestContext.setHeaderParam("Content-Type", contentType);
                         serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(updatePhoneNumber, "UpdatePhoneNumber", ""), contentType);
                         requestContext.setBody(serializedBody);
-                        authMethod = _config.authMethods["APIKeyHeader"];
+                        authMethod = _config.authMethods["Bearer"];
                         if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
                         return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
                     case 1:
@@ -296,7 +293,49 @@ exports.PhoneNumbersApiRequestFactory = PhoneNumbersApiRequestFactory;
 var PhoneNumbersApiResponseProcessor = (function () {
     function PhoneNumbersApiResponseProcessor() {
     }
-    PhoneNumbersApiResponseProcessor.prototype.buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo = function (response) {
+    PhoneNumbersApiResponseProcessor.prototype.availableNumbersToBuyWithHttpInfo = function (response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var contentType, body, _a, _b, _c, _d, body, _e, _f, _g, _h, body, _j, _k, _l, _m, _o, _p;
+            return __generator(this, function (_q) {
+                switch (_q.label) {
+                    case 0:
+                        contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+                        if (!(0, util_1.isCodeInRange)("200", response.httpStatusCode)) return [3, 2];
+                        _b = (_a = ObjectSerializer_1.ObjectSerializer).deserialize;
+                        _d = (_c = ObjectSerializer_1.ObjectSerializer).parse;
+                        return [4, response.body.text()];
+                    case 1:
+                        body = _b.apply(_a, [_d.apply(_c, [_q.sent(), contentType]),
+                            "Array<PhoneNumberToBuy>", ""]);
+                        return [2, new http_1.HttpInfo(response.httpStatusCode, response.headers, response.body, body)];
+                    case 2:
+                        if (!(0, util_1.isCodeInRange)("422", response.httpStatusCode)) return [3, 4];
+                        _f = (_e = ObjectSerializer_1.ObjectSerializer).deserialize;
+                        _h = (_g = ObjectSerializer_1.ObjectSerializer).parse;
+                        return [4, response.body.text()];
+                    case 3:
+                        body = _f.apply(_e, [_h.apply(_g, [_q.sent(), contentType]),
+                            "HTTPValidationError", ""]);
+                        throw new exception_1.ApiException(response.httpStatusCode, "Validation Error", body, response.headers);
+                    case 4:
+                        if (!(response.httpStatusCode >= 200 && response.httpStatusCode <= 299)) return [3, 6];
+                        _k = (_j = ObjectSerializer_1.ObjectSerializer).deserialize;
+                        _m = (_l = ObjectSerializer_1.ObjectSerializer).parse;
+                        return [4, response.body.text()];
+                    case 5:
+                        body = _k.apply(_j, [_m.apply(_l, [_q.sent(), contentType]),
+                            "Array<PhoneNumberToBuy>", ""]);
+                        return [2, new http_1.HttpInfo(response.httpStatusCode, response.headers, response.body, body)];
+                    case 6:
+                        _o = exception_1.ApiException.bind;
+                        _p = [void 0, response.httpStatusCode, "Unknown API Status Code!"];
+                        return [4, response.getBodyAsAny()];
+                    case 7: throw new (_o.apply(exception_1.ApiException, _p.concat([_q.sent(), response.headers])))();
+                }
+            });
+        });
+    };
+    PhoneNumbersApiResponseProcessor.prototype.buyPhoneNumberWithHttpInfo = function (response) {
         return __awaiter(this, void 0, void 0, function () {
             var contentType, body, _a, _b, _c, _d, body, _e, _f, _g, _h, body, _j, _k, _l, _m, _o, _p;
             return __generator(this, function (_q) {
@@ -338,7 +377,7 @@ var PhoneNumbersApiResponseProcessor = (function () {
             });
         });
     };
-    PhoneNumbersApiResponseProcessor.prototype.deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo = function (response) {
+    PhoneNumbersApiResponseProcessor.prototype.deletePhoneNumberWithHttpInfo = function (response) {
         return __awaiter(this, void 0, void 0, function () {
             var contentType, body, _a, _b, _c, _d, body, _e, _f, _g, _h, body, _j, _k, _l, _m, _o, _p;
             return __generator(this, function (_q) {
@@ -422,48 +461,6 @@ var PhoneNumbersApiResponseProcessor = (function () {
             });
         });
     };
-    PhoneNumbersApiResponseProcessor.prototype.listAvailablePhoneNumbersWithHttpInfo = function (response) {
-        return __awaiter(this, void 0, void 0, function () {
-            var contentType, body, _a, _b, _c, _d, body, _e, _f, _g, _h, body, _j, _k, _l, _m, _o, _p;
-            return __generator(this, function (_q) {
-                switch (_q.label) {
-                    case 0:
-                        contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-                        if (!(0, util_1.isCodeInRange)("200", response.httpStatusCode)) return [3, 2];
-                        _b = (_a = ObjectSerializer_1.ObjectSerializer).deserialize;
-                        _d = (_c = ObjectSerializer_1.ObjectSerializer).parse;
-                        return [4, response.body.text()];
-                    case 1:
-                        body = _b.apply(_a, [_d.apply(_c, [_q.sent(), contentType]),
-                            "Array<PhoneNumberToBuy>", ""]);
-                        return [2, new http_1.HttpInfo(response.httpStatusCode, response.headers, response.body, body)];
-                    case 2:
-                        if (!(0, util_1.isCodeInRange)("422", response.httpStatusCode)) return [3, 4];
-                        _f = (_e = ObjectSerializer_1.ObjectSerializer).deserialize;
-                        _h = (_g = ObjectSerializer_1.ObjectSerializer).parse;
-                        return [4, response.body.text()];
-                    case 3:
-                        body = _f.apply(_e, [_h.apply(_g, [_q.sent(), contentType]),
-                            "HTTPValidationError", ""]);
-                        throw new exception_1.ApiException(response.httpStatusCode, "Validation Error", body, response.headers);
-                    case 4:
-                        if (!(response.httpStatusCode >= 200 && response.httpStatusCode <= 299)) return [3, 6];
-                        _k = (_j = ObjectSerializer_1.ObjectSerializer).deserialize;
-                        _m = (_l = ObjectSerializer_1.ObjectSerializer).parse;
-                        return [4, response.body.text()];
-                    case 5:
-                        body = _k.apply(_j, [_m.apply(_l, [_q.sent(), contentType]),
-                            "Array<PhoneNumberToBuy>", ""]);
-                        return [2, new http_1.HttpInfo(response.httpStatusCode, response.headers, response.body, body)];
-                    case 6:
-                        _o = exception_1.ApiException.bind;
-                        _p = [void 0, response.httpStatusCode, "Unknown API Status Code!"];
-                        return [4, response.getBodyAsAny()];
-                    case 7: throw new (_o.apply(exception_1.ApiException, _p.concat([_q.sent(), response.headers])))();
-                }
-            });
-        });
-    };
     PhoneNumbersApiResponseProcessor.prototype.listPhoneNumbersWithHttpInfo = function (response) {
         return __awaiter(this, void 0, void 0, function () {
             var contentType, body, _a, _b, _c, _d, body, _e, _f, _g, _h, body, _j, _k, _l, _m, _o, _p;
@@ -506,7 +503,7 @@ var PhoneNumbersApiResponseProcessor = (function () {
             });
         });
     };
-    PhoneNumbersApiResponseProcessor.prototype.updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo = function (response) {
+    PhoneNumbersApiResponseProcessor.prototype.updatePhoneNumberWithHttpInfo = function (response) {
         return __awaiter(this, void 0, void 0, function () {
             var contentType, body, _a, _b, _c, _d, body, _e, _f, _g, _h, body, _j, _k, _l, _m, _o, _p;
             return __generator(this, function (_q) {

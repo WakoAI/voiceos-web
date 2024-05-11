@@ -18,7 +18,7 @@ var AzureTranscriber = (function () {
         {
             "name": "languages",
             "baseName": "languages",
-            "type": "Array<AzureLanguages>",
+            "type": "Array<AzureTranscriberLanguagesInner>",
             "format": ""
         }
     ];

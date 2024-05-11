@@ -2,7 +2,7 @@ import { AgentResponse } from '../models/AgentResponse';
 export declare class AgentPagination {
     'items': Array<AgentResponse>;
     'index': number;
-    'hasNext': boolean;
+    'hasMore': boolean;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{
         name: string;

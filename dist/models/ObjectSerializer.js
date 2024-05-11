@@ -15,56 +15,61 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObjectSerializer = void 0;
-__exportStar(require("../models/Agent"), exports);
 __exportStar(require("../models/AgentConfiguration"), exports);
 __exportStar(require("../models/AgentCost"), exports);
-__exportStar(require("../models/AgentLanguage"), exports);
 __exportStar(require("../models/AgentPagination"), exports);
 __exportStar(require("../models/AgentProvider"), exports);
 __exportStar(require("../models/AgentResponse"), exports);
 __exportStar(require("../models/AzureLanguages"), exports);
 __exportStar(require("../models/AzureModel"), exports);
-__exportStar(require("../models/AzureSynthesizer"), exports);
 __exportStar(require("../models/AzureTranscriber"), exports);
+__exportStar(require("../models/AzureTranscriberLanguagesInner"), exports);
+__exportStar(require("../models/AzureVoice"), exports);
 __exportStar(require("../models/BuyPhoneNumber"), exports);
-__exportStar(require("../models/CallCost"), exports);
-__exportStar(require("../models/CallRecording"), exports);
-__exportStar(require("../models/CallResponse"), exports);
-__exportStar(require("../models/CallStatus"), exports);
-__exportStar(require("../models/CallType"), exports);
-__exportStar(require("../models/CallsPagination"), exports);
 __exportStar(require("../models/ChatGPT"), exports);
+__exportStar(require("../models/ConversationCost"), exports);
+__exportStar(require("../models/ConversationRecording"), exports);
+__exportStar(require("../models/ConversationResponse"), exports);
+__exportStar(require("../models/ConversationStatus"), exports);
+__exportStar(require("../models/ConversationType"), exports);
+__exportStar(require("../models/ConversationsPagination"), exports);
 __exportStar(require("../models/CreateCall"), exports);
-__exportStar(require("../models/CreateCallResponse"), exports);
-__exportStar(require("../models/Currency"), exports);
 __exportStar(require("../models/DeepgramLanguages"), exports);
-__exportStar(require("../models/DeepgramModel"), exports);
 __exportStar(require("../models/DeepgramTranscriber"), exports);
+__exportStar(require("../models/DeepgramVoice"), exports);
 __exportStar(require("../models/ElevenLabsModel"), exports);
-__exportStar(require("../models/ElevenLabsSynthesizer"), exports);
+__exportStar(require("../models/ElevenLabsVoices"), exports);
+__exportStar(require("../models/ElevenlabsVoice"), exports);
 __exportStar(require("../models/EndedReasons"), exports);
-__exportStar(require("../models/Event"), exports);
 __exportStar(require("../models/EventName"), exports);
-__exportStar(require("../models/EventVariableName"), exports);
 __exportStar(require("../models/HTTPValidationError"), exports);
+__exportStar(require("../models/Language"), exports);
 __exportStar(require("../models/LanguageModelCost"), exports);
 __exportStar(require("../models/Message"), exports);
 __exportStar(require("../models/MessageRole"), exports);
 __exportStar(require("../models/MethodEnum"), exports);
+__exportStar(require("../models/Model"), exports);
+__exportStar(require("../models/Model1"), exports);
+__exportStar(require("../models/Model2"), exports);
+__exportStar(require("../models/Model3"), exports);
+__exportStar(require("../models/Model4"), exports);
 __exportStar(require("../models/OpenAI"), exports);
-__exportStar(require("../models/OpenAIFunction"), exports);
-__exportStar(require("../models/OpenAIFunctionParameter"), exports);
-__exportStar(require("../models/OpenAIFunctionType"), exports);
 __exportStar(require("../models/PhoneNumber"), exports);
+__exportStar(require("../models/PhoneNumberEvents"), exports);
 __exportStar(require("../models/PhoneNumberPagination"), exports);
 __exportStar(require("../models/PhoneNumberResponse"), exports);
 __exportStar(require("../models/PhoneNumberToBuy"), exports);
-__exportStar(require("../models/RimeSynthesizer"), exports);
-__exportStar(require("../models/SynthesizerCost"), exports);
+__exportStar(require("../models/PhoneNumberWebhook"), exports);
+__exportStar(require("../models/PlayHTModel"), exports);
+__exportStar(require("../models/PlayhtVoice"), exports);
+__exportStar(require("../models/RimeSpeaker"), exports);
+__exportStar(require("../models/RimeVoice"), exports);
+__exportStar(require("../models/Speaker"), exports);
 __exportStar(require("../models/TelephonyCost"), exports);
 __exportStar(require("../models/Transcriber"), exports);
 __exportStar(require("../models/Transcriber1"), exports);
 __exportStar(require("../models/TranscriberCost"), exports);
+__exportStar(require("../models/TwilioPhoneCall"), exports);
 __exportStar(require("../models/TwilioTelephony"), exports);
 __exportStar(require("../models/UpdateAgent"), exports);
 __exportStar(require("../models/UpdatePhoneNumber"), exports);
@@ -72,44 +77,54 @@ __exportStar(require("../models/ValidationError"), exports);
 __exportStar(require("../models/ValidationErrorLocInner"), exports);
 __exportStar(require("../models/Voice"), exports);
 __exportStar(require("../models/Voice1"), exports);
+__exportStar(require("../models/VoiceCost"), exports);
+__exportStar(require("../models/VoiceId"), exports);
 __exportStar(require("../models/WakoApiModelsLanguageModelProvider"), exports);
 __exportStar(require("../models/WakoApiModelsPhoneNumberProvider"), exports);
+__exportStar(require("../models/WakoApiModelsSynthesizerDeepgramModel"), exports);
 __exportStar(require("../models/WakoApiModelsSynthesizerProvider"), exports);
+__exportStar(require("../models/WakoApiModelsTranscriberDeepgramModel"), exports);
 __exportStar(require("../models/WakoApiModelsTranscriberProvider"), exports);
 __exportStar(require("../models/Webhook"), exports);
-var Agent_1 = require("../models/Agent");
 var AgentConfiguration_1 = require("../models/AgentConfiguration");
 var AgentCost_1 = require("../models/AgentCost");
 var AgentPagination_1 = require("../models/AgentPagination");
 var AgentResponse_1 = require("../models/AgentResponse");
-var AzureSynthesizer_1 = require("../models/AzureSynthesizer");
 var AzureTranscriber_1 = require("../models/AzureTranscriber");
+var AzureTranscriberLanguagesInner_1 = require("../models/AzureTranscriberLanguagesInner");
+var AzureVoice_1 = require("../models/AzureVoice");
 var BuyPhoneNumber_1 = require("../models/BuyPhoneNumber");
-var CallCost_1 = require("../models/CallCost");
-var CallRecording_1 = require("../models/CallRecording");
-var CallResponse_1 = require("../models/CallResponse");
-var CallsPagination_1 = require("../models/CallsPagination");
+var ConversationCost_1 = require("../models/ConversationCost");
+var ConversationRecording_1 = require("../models/ConversationRecording");
+var ConversationResponse_1 = require("../models/ConversationResponse");
+var ConversationsPagination_1 = require("../models/ConversationsPagination");
 var CreateCall_1 = require("../models/CreateCall");
-var CreateCallResponse_1 = require("../models/CreateCallResponse");
 var DeepgramTranscriber_1 = require("../models/DeepgramTranscriber");
-var ElevenLabsSynthesizer_1 = require("../models/ElevenLabsSynthesizer");
-var Event_1 = require("../models/Event");
+var DeepgramVoice_1 = require("../models/DeepgramVoice");
+var ElevenlabsVoice_1 = require("../models/ElevenlabsVoice");
 var HTTPValidationError_1 = require("../models/HTTPValidationError");
+var Language_1 = require("../models/Language");
 var LanguageModelCost_1 = require("../models/LanguageModelCost");
 var Message_1 = require("../models/Message");
+var Model_1 = require("../models/Model");
+var Model1_1 = require("../models/Model1");
+var Model2_1 = require("../models/Model2");
+var Model3_1 = require("../models/Model3");
+var Model4_1 = require("../models/Model4");
 var OpenAI_1 = require("../models/OpenAI");
-var OpenAIFunction_1 = require("../models/OpenAIFunction");
-var OpenAIFunctionParameter_1 = require("../models/OpenAIFunctionParameter");
 var PhoneNumber_1 = require("../models/PhoneNumber");
 var PhoneNumberPagination_1 = require("../models/PhoneNumberPagination");
 var PhoneNumberResponse_1 = require("../models/PhoneNumberResponse");
 var PhoneNumberToBuy_1 = require("../models/PhoneNumberToBuy");
-var RimeSynthesizer_1 = require("../models/RimeSynthesizer");
-var SynthesizerCost_1 = require("../models/SynthesizerCost");
+var PhoneNumberWebhook_1 = require("../models/PhoneNumberWebhook");
+var PlayhtVoice_1 = require("../models/PlayhtVoice");
+var RimeVoice_1 = require("../models/RimeVoice");
+var Speaker_1 = require("../models/Speaker");
 var TelephonyCost_1 = require("../models/TelephonyCost");
 var Transcriber_1 = require("../models/Transcriber");
 var Transcriber1_1 = require("../models/Transcriber1");
 var TranscriberCost_1 = require("../models/TranscriberCost");
+var TwilioPhoneCall_1 = require("../models/TwilioPhoneCall");
 var TwilioTelephony_1 = require("../models/TwilioTelephony");
 var UpdateAgent_1 = require("../models/UpdateAgent");
 var UpdatePhoneNumber_1 = require("../models/UpdatePhoneNumber");
@@ -117,6 +132,8 @@ var ValidationError_1 = require("../models/ValidationError");
 var ValidationErrorLocInner_1 = require("../models/ValidationErrorLocInner");
 var Voice_1 = require("../models/Voice");
 var Voice1_1 = require("../models/Voice1");
+var VoiceCost_1 = require("../models/VoiceCost");
+var VoiceId_1 = require("../models/VoiceId");
 var Webhook_1 = require("../models/Webhook");
 var primitives = [
     "string",
@@ -129,75 +146,82 @@ var primitives = [
     "any"
 ];
 var enumsMap = new Set([
-    "AgentLanguage",
     "AgentProvider",
     "AzureLanguages",
     "AzureModel",
-    "AzureSynthesizerProviderEnum",
     "AzureTranscriberProviderEnum",
-    "BuyPhoneNumberProviderEnum",
-    "CallStatus",
-    "CallType",
+    "AzureVoiceProviderEnum",
     "ChatGPT",
-    "Currency",
+    "ConversationStatus",
+    "ConversationType",
     "DeepgramLanguages",
-    "DeepgramModel",
     "DeepgramTranscriberProviderEnum",
+    "DeepgramVoiceProviderEnum",
     "ElevenLabsModel",
-    "ElevenLabsSynthesizerProviderEnum",
+    "ElevenLabsVoices",
+    "ElevenlabsVoiceProviderEnum",
     "EndedReasons",
     "EventName",
-    "EventVariableName",
     "MessageRole",
     "MethodEnum",
     "OpenAIProviderEnum",
-    "OpenAIFunctionType",
-    "PhoneNumberToBuyProviderEnum",
-    "RimeSynthesizerProviderEnum",
+    "PhoneNumberEvents",
+    "PlayHTModel",
+    "PlayhtVoiceProviderEnum",
+    "RimeSpeaker",
+    "RimeVoiceProviderEnum",
     "TranscriberProviderEnum",
     "Transcriber1ProviderEnum",
-    "TwilioTelephonyProviderEnum",
+    "TwilioPhoneCallProviderEnum",
     "VoiceProviderEnum",
     "Voice1ProviderEnum",
     "WakoApiModelsLanguageModelProvider",
     "WakoApiModelsPhoneNumberProvider",
+    "WakoApiModelsSynthesizerDeepgramModel",
     "WakoApiModelsSynthesizerProvider",
+    "WakoApiModelsTranscriberDeepgramModel",
     "WakoApiModelsTranscriberProvider",
 ]);
 var typeMap = {
-    "Agent": Agent_1.Agent,
     "AgentConfiguration": AgentConfiguration_1.AgentConfiguration,
     "AgentCost": AgentCost_1.AgentCost,
     "AgentPagination": AgentPagination_1.AgentPagination,
     "AgentResponse": AgentResponse_1.AgentResponse,
-    "AzureSynthesizer": AzureSynthesizer_1.AzureSynthesizer,
     "AzureTranscriber": AzureTranscriber_1.AzureTranscriber,
+    "AzureTranscriberLanguagesInner": AzureTranscriberLanguagesInner_1.AzureTranscriberLanguagesInner,
+    "AzureVoice": AzureVoice_1.AzureVoice,
     "BuyPhoneNumber": BuyPhoneNumber_1.BuyPhoneNumber,
-    "CallCost": CallCost_1.CallCost,
-    "CallRecording": CallRecording_1.CallRecording,
-    "CallResponse": CallResponse_1.CallResponse,
-    "CallsPagination": CallsPagination_1.CallsPagination,
+    "ConversationCost": ConversationCost_1.ConversationCost,
+    "ConversationRecording": ConversationRecording_1.ConversationRecording,
+    "ConversationResponse": ConversationResponse_1.ConversationResponse,
+    "ConversationsPagination": ConversationsPagination_1.ConversationsPagination,
     "CreateCall": CreateCall_1.CreateCall,
-    "CreateCallResponse": CreateCallResponse_1.CreateCallResponse,
     "DeepgramTranscriber": DeepgramTranscriber_1.DeepgramTranscriber,
-    "ElevenLabsSynthesizer": ElevenLabsSynthesizer_1.ElevenLabsSynthesizer,
-    "Event": Event_1.Event,
+    "DeepgramVoice": DeepgramVoice_1.DeepgramVoice,
+    "ElevenlabsVoice": ElevenlabsVoice_1.ElevenlabsVoice,
     "HTTPValidationError": HTTPValidationError_1.HTTPValidationError,
+    "Language": Language_1.Language,
     "LanguageModelCost": LanguageModelCost_1.LanguageModelCost,
     "Message": Message_1.Message,
+    "Model": Model_1.Model,
+    "Model1": Model1_1.Model1,
+    "Model2": Model2_1.Model2,
+    "Model3": Model3_1.Model3,
+    "Model4": Model4_1.Model4,
     "OpenAI": OpenAI_1.OpenAI,
-    "OpenAIFunction": OpenAIFunction_1.OpenAIFunction,
-    "OpenAIFunctionParameter": OpenAIFunctionParameter_1.OpenAIFunctionParameter,
     "PhoneNumber": PhoneNumber_1.PhoneNumber,
     "PhoneNumberPagination": PhoneNumberPagination_1.PhoneNumberPagination,
     "PhoneNumberResponse": PhoneNumberResponse_1.PhoneNumberResponse,
     "PhoneNumberToBuy": PhoneNumberToBuy_1.PhoneNumberToBuy,
-    "RimeSynthesizer": RimeSynthesizer_1.RimeSynthesizer,
-    "SynthesizerCost": SynthesizerCost_1.SynthesizerCost,
+    "PhoneNumberWebhook": PhoneNumberWebhook_1.PhoneNumberWebhook,
+    "PlayhtVoice": PlayhtVoice_1.PlayhtVoice,
+    "RimeVoice": RimeVoice_1.RimeVoice,
+    "Speaker": Speaker_1.Speaker,
     "TelephonyCost": TelephonyCost_1.TelephonyCost,
     "Transcriber": Transcriber_1.Transcriber,
     "Transcriber1": Transcriber1_1.Transcriber1,
     "TranscriberCost": TranscriberCost_1.TranscriberCost,
+    "TwilioPhoneCall": TwilioPhoneCall_1.TwilioPhoneCall,
     "TwilioTelephony": TwilioTelephony_1.TwilioTelephony,
     "UpdateAgent": UpdateAgent_1.UpdateAgent,
     "UpdatePhoneNumber": UpdatePhoneNumber_1.UpdatePhoneNumber,
@@ -205,6 +229,8 @@ var typeMap = {
     "ValidationErrorLocInner": ValidationErrorLocInner_1.ValidationErrorLocInner,
     "Voice": Voice_1.Voice,
     "Voice1": Voice1_1.Voice1,
+    "VoiceCost": VoiceCost_1.VoiceCost,
+    "VoiceId": VoiceId_1.VoiceId,
     "Webhook": Webhook_1.Webhook,
 };
 var parseMimeType = function (mimeType) {

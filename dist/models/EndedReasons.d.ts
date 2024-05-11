@@ -1,6 +1,5 @@
 export declare enum EndedReasons {
-    HumanHangup = "human_hangup",
-    AgentHangup = "agent_hangup",
-    NoAnswer = "no_answer",
+    AgentEnded = "agent_ended",
+    UserEnded = "user_ended",
     Unknown = "unknown"
 }

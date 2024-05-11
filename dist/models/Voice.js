@@ -18,12 +18,66 @@ var Voice = (function () {
         {
             "name": "model",
             "baseName": "model",
-            "type": "AzureModel",
+            "type": "Model2",
+            "format": ""
+        },
+        {
+            "name": "speed",
+            "baseName": "speed",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "temperature",
+            "baseName": "temperature",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "textGuidance",
+            "baseName": "text_guidance",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "styleGuidance",
+            "baseName": "style_guidance",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "voiceId",
+            "baseName": "voice_id",
+            "type": "VoiceId",
+            "format": ""
+        },
+        {
+            "name": "modelId",
+            "baseName": "model_id",
+            "type": "ElevenLabsModel",
             "format": ""
         },
         {
             "name": "optimizeLatency",
             "baseName": "optimize_latency",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "useSpeakerBoost",
+            "baseName": "use_speaker_boost",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "similarityBoost",
+            "baseName": "similarity_boost",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "stability",
+            "baseName": "stability",
             "type": "any",
             "format": ""
         },
@@ -42,18 +96,18 @@ var Voice = (function () {
         {
             "name": "speaker",
             "baseName": "speaker",
-            "type": "any",
-            "format": ""
-        },
-        {
-            "name": "reduceLantency",
-            "baseName": "reduce_lantency",
-            "type": "any",
+            "type": "Speaker",
             "format": ""
         },
         {
             "name": "speedAlpha",
             "baseName": "speed_alpha",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "reduceLatency",
+            "baseName": "reduce_latency",
             "type": "any",
             "format": ""
         }

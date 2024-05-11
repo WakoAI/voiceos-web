@@ -10,9 +10,15 @@ var UpdatePhoneNumber = (function () {
     UpdatePhoneNumber.discriminator = undefined;
     UpdatePhoneNumber.attributeTypeMap = [
         {
-            "name": "inboundAgentUri",
-            "baseName": "inbound_agent_uri",
+            "name": "inboundAgentId",
+            "baseName": "inbound_agent_id",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "webhooks",
+            "baseName": "webhooks",
+            "type": "Array<PhoneNumberWebhook>",
             "format": ""
         }
     ];

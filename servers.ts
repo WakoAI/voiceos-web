@@ -50,6 +50,6 @@ export class ServerConfiguration<T extends { [key: string]: string }> implements
     }
 }
 
-export const server1 = new ServerConfiguration<{  }>("https://api.wako.ai", {  })
+export const server1 = new ServerConfiguration<{  }>("https://api.voiceos.io", {  })
 
 export const servers = [server1];

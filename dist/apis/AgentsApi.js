@@ -82,7 +82,7 @@ var AgentsApiRequestFactory = (function (_super) {
                         requestContext.setHeaderParam("Content-Type", contentType);
                         serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(agentConfiguration, "AgentConfiguration", ""), contentType);
                         requestContext.setBody(serializedBody);
-                        authMethod = _config.authMethods["APIKeyHeader"];
+                        authMethod = _config.authMethods["Bearer"];
                         if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
                         return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
                     case 1:
@@ -100,7 +100,7 @@ var AgentsApiRequestFactory = (function (_super) {
             });
         });
     };
-    AgentsApiRequestFactory.prototype.deleteAgent = function (agentId, _options) {
+    AgentsApiRequestFactory.prototype.deleteAgent = function (id, _options) {
         var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
             var _config, localVarPath, requestContext, authMethod, defaultAuth;
@@ -108,14 +108,14 @@ var AgentsApiRequestFactory = (function (_super) {
                 switch (_d.label) {
                     case 0:
                         _config = _options || this.configuration;
-                        if (agentId === null || agentId === undefined) {
-                            throw new baseapi_1.RequiredError("AgentsApi", "deleteAgent", "agentId");
+                        if (id === null || id === undefined) {
+                            throw new baseapi_1.RequiredError("AgentsApi", "deleteAgent", "id");
                         }
-                        localVarPath = '/agents/{agent_id}'
-                            .replace('{' + 'agent_id' + '}', encodeURIComponent(String(agentId)));
+                        localVarPath = '/agents/{id}'
+                            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
                         requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethod.DELETE);
                         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8");
-                        authMethod = _config.authMethods["APIKeyHeader"];
+                        authMethod = _config.authMethods["Bearer"];
                         if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
                         return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
                     case 1:
@@ -133,7 +133,7 @@ var AgentsApiRequestFactory = (function (_super) {
             });
         });
     };
-    AgentsApiRequestFactory.prototype.getAgent = function (agentId, _options) {
+    AgentsApiRequestFactory.prototype.getAgent = function (id, _options) {
         var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
             var _config, localVarPath, requestContext, authMethod, defaultAuth;
@@ -141,14 +141,14 @@ var AgentsApiRequestFactory = (function (_super) {
                 switch (_d.label) {
                     case 0:
                         _config = _options || this.configuration;
-                        if (agentId === null || agentId === undefined) {
-                            throw new baseapi_1.RequiredError("AgentsApi", "getAgent", "agentId");
+                        if (id === null || id === undefined) {
+                            throw new baseapi_1.RequiredError("AgentsApi", "getAgent", "id");
                         }
-                        localVarPath = '/agents/{agent_id}'
-                            .replace('{' + 'agent_id' + '}', encodeURIComponent(String(agentId)));
+                        localVarPath = '/agents/{id}'
+                            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
                         requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethod.GET);
                         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8");
-                        authMethod = _config.authMethods["APIKeyHeader"];
+                        authMethod = _config.authMethods["Bearer"];
                         if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
                         return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
                     case 1:
@@ -166,7 +166,7 @@ var AgentsApiRequestFactory = (function (_super) {
             });
         });
     };
-    AgentsApiRequestFactory.prototype.listAgents = function (createdAfter, createdBefore, index, size, _options) {
+    AgentsApiRequestFactory.prototype.listAgents = function (createdAfter, createdBefore, index, limit, _options) {
         var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
             var _config, localVarPath, requestContext, authMethod, defaultAuth;
@@ -186,10 +186,10 @@ var AgentsApiRequestFactory = (function (_super) {
                         if (index !== undefined) {
                             requestContext.setQueryParam("index", ObjectSerializer_1.ObjectSerializer.serialize(index, "number", ""));
                         }
-                        if (size !== undefined) {
-                            requestContext.setQueryParam("size", ObjectSerializer_1.ObjectSerializer.serialize(size, "number", ""));
+                        if (limit !== undefined) {
+                            requestContext.setQueryParam("limit", ObjectSerializer_1.ObjectSerializer.serialize(limit, "number", ""));
                         }
-                        authMethod = _config.authMethods["APIKeyHeader"];
+                        authMethod = _config.authMethods["Bearer"];
                         if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
                         return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
                     case 1:
@@ -207,7 +207,7 @@ var AgentsApiRequestFactory = (function (_super) {
             });
         });
     };
-    AgentsApiRequestFactory.prototype.updateAgent = function (agentId, updateAgent, _options) {
+    AgentsApiRequestFactory.prototype.updateAgent = function (id, updateAgent, _options) {
         var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
             var _config, localVarPath, requestContext, contentType, serializedBody, authMethod, defaultAuth;
@@ -215,14 +215,14 @@ var AgentsApiRequestFactory = (function (_super) {
                 switch (_d.label) {
                     case 0:
                         _config = _options || this.configuration;
-                        if (agentId === null || agentId === undefined) {
-                            throw new baseapi_1.RequiredError("AgentsApi", "updateAgent", "agentId");
+                        if (id === null || id === undefined) {
+                            throw new baseapi_1.RequiredError("AgentsApi", "updateAgent", "id");
                         }
                         if (updateAgent === null || updateAgent === undefined) {
                             throw new baseapi_1.RequiredError("AgentsApi", "updateAgent", "updateAgent");
                         }
-                        localVarPath = '/agents/{agent_id}'
-                            .replace('{' + 'agent_id' + '}', encodeURIComponent(String(agentId)));
+                        localVarPath = '/agents/{id}'
+                            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
                         requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethod.PATCH);
                         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8");
                         contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -231,7 +231,7 @@ var AgentsApiRequestFactory = (function (_super) {
                         requestContext.setHeaderParam("Content-Type", contentType);
                         serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(updateAgent, "UpdateAgent", ""), contentType);
                         requestContext.setBody(serializedBody);
-                        authMethod = _config.authMethods["APIKeyHeader"];
+                        authMethod = _config.authMethods["Bearer"];
                         if (!(authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication)) return [3, 2];
                         return [4, (authMethod === null || authMethod === void 0 ? void 0 : authMethod.applySecurityAuthentication(requestContext))];
                     case 1:

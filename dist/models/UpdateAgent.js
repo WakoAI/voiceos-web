@@ -10,12 +10,6 @@ var UpdateAgent = (function () {
     UpdateAgent.discriminator = undefined;
     UpdateAgent.attributeTypeMap = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "initialMessage",
             "baseName": "initial_message",
             "type": "string",
@@ -28,9 +22,9 @@ var UpdateAgent = (function () {
             "format": ""
         },
         {
-            "name": "language",
-            "baseName": "language",
-            "type": "AgentLanguage",
+            "name": "voice",
+            "baseName": "voice",
+            "type": "Voice1",
             "format": ""
         },
         {
@@ -40,20 +34,14 @@ var UpdateAgent = (function () {
             "format": ""
         },
         {
-            "name": "voice",
-            "baseName": "voice",
-            "type": "Voice1",
-            "format": ""
-        },
-        {
             "name": "transcriber",
             "baseName": "transcriber",
             "type": "Transcriber1",
             "format": ""
         },
         {
-            "name": "maxDurationTime",
-            "baseName": "max_duration_time",
+            "name": "maxDurationSeconds",
+            "baseName": "max_duration_seconds",
             "type": "number",
             "format": ""
         },
@@ -61,6 +49,12 @@ var UpdateAgent = (function () {
             "name": "webhooks",
             "baseName": "webhooks",
             "type": "Array<Webhook>",
+            "format": ""
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }
     ];

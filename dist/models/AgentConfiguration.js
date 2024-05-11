@@ -10,12 +10,6 @@ var AgentConfiguration = (function () {
     AgentConfiguration.discriminator = undefined;
     AgentConfiguration.attributeTypeMap = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "initialMessage",
             "baseName": "initial_message",
             "type": "string",
@@ -28,9 +22,9 @@ var AgentConfiguration = (function () {
             "format": ""
         },
         {
-            "name": "language",
-            "baseName": "language",
-            "type": "AgentLanguage",
+            "name": "voice",
+            "baseName": "voice",
+            "type": "Voice",
             "format": ""
         },
         {
@@ -40,20 +34,14 @@ var AgentConfiguration = (function () {
             "format": ""
         },
         {
-            "name": "voice",
-            "baseName": "voice",
-            "type": "Voice",
-            "format": ""
-        },
-        {
             "name": "transcriber",
             "baseName": "transcriber",
             "type": "Transcriber",
             "format": ""
         },
         {
-            "name": "maxCallDuration",
-            "baseName": "max_call_duration",
+            "name": "maxDurationSeconds",
+            "baseName": "max_duration_seconds",
             "type": "number",
             "format": ""
         },
@@ -61,6 +49,12 @@ var AgentConfiguration = (function () {
             "name": "webhooks",
             "baseName": "webhooks",
             "type": "Array<Webhook>",
+            "format": ""
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }
     ];

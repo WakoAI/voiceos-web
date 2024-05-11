@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PhoneNumberToBuyProviderEnum = exports.PhoneNumberToBuy = void 0;
+exports.PhoneNumberToBuy = void 0;
 var PhoneNumberToBuy = (function () {
     function PhoneNumberToBuy() {
     }
@@ -12,7 +12,7 @@ var PhoneNumberToBuy = (function () {
         {
             "name": "provider",
             "baseName": "provider",
-            "type": "PhoneNumberToBuyProviderEnum",
+            "type": "WakoApiModelsPhoneNumberProvider",
             "format": ""
         },
         {
@@ -37,8 +37,4 @@ var PhoneNumberToBuy = (function () {
     return PhoneNumberToBuy;
 }());
 exports.PhoneNumberToBuy = PhoneNumberToBuy;
-var PhoneNumberToBuyProviderEnum;
-(function (PhoneNumberToBuyProviderEnum) {
-    PhoneNumberToBuyProviderEnum["Twilio"] = "twilio";
-})(PhoneNumberToBuyProviderEnum = exports.PhoneNumberToBuyProviderEnum || (exports.PhoneNumberToBuyProviderEnum = {}));
 //# sourceMappingURL=PhoneNumberToBuy.js.map

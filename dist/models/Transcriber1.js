@@ -18,13 +18,13 @@ var Transcriber1 = (function () {
         {
             "name": "model",
             "baseName": "model",
-            "type": "DeepgramModel",
+            "type": "Model1",
             "format": ""
         },
         {
             "name": "language",
             "baseName": "language",
-            "type": "DeepgramLanguages",
+            "type": "Language",
             "format": ""
         },
         {

@@ -22,8 +22,8 @@ var AgentPagination = (function () {
             "format": ""
         },
         {
-            "name": "hasNext",
-            "baseName": "has_next",
+            "name": "hasMore",
+            "baseName": "has_more",
             "type": "boolean",
             "format": ""
         }

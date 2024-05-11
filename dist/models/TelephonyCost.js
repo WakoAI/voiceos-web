@@ -26,12 +26,6 @@ var TelephonyCost = (function () {
             "baseName": "seconds",
             "type": "number",
             "format": ""
-        },
-        {
-            "name": "external",
-            "baseName": "external",
-            "type": "boolean",
-            "format": ""
         }
     ];
     return TelephonyCost;

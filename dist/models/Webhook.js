@@ -10,9 +10,9 @@ var Webhook = (function () {
     Webhook.discriminator = undefined;
     Webhook.attributeTypeMap = [
         {
-            "name": "event",
-            "baseName": "event",
-            "type": "Event",
+            "name": "events",
+            "baseName": "events",
+            "type": "Array<EventName>",
             "format": ""
         },
         {
@@ -36,7 +36,7 @@ var Webhook = (function () {
         {
             "name": "filter",
             "baseName": "filter",
-            "type": "{ [key: string]: number; }",
+            "type": "string",
             "format": ""
         }
     ];

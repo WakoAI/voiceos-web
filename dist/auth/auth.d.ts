@@ -6,22 +6,15 @@ export interface SecurityAuthentication {
 export interface TokenProvider {
     getToken(): Promise<string> | string;
 }
-export declare class APIKeyHeaderAuthentication implements SecurityAuthentication {
-    private apiKey;
-    constructor(apiKey: string);
+export declare class BearerAuthentication implements SecurityAuthentication {
+    private tokenProvider;
+    constructor(tokenProvider: TokenProvider);
     getName(): string;
-    applySecurityAuthentication(context: RequestContext): void;
-}
-export declare class XAPIKEYAuthentication implements SecurityAuthentication {
-    private apiKey;
-    constructor(apiKey: string);
-    getName(): string;
-    applySecurityAuthentication(context: RequestContext): void;
+    applySecurityAuthentication(context: RequestContext): Promise<void>;
 }
 export type AuthMethods = {
     "default"?: SecurityAuthentication;
-    "APIKeyHeader"?: SecurityAuthentication;
-    "X-API-KEY"?: SecurityAuthentication;
+    "Bearer"?: SecurityAuthentication;
 };
 export type ApiKeyConfiguration = string;
 export type HttpBasicConfiguration = {
@@ -36,7 +29,6 @@ export type OAuth2Configuration = {
 };
 export type AuthMethodsConfiguration = {
     "default"?: SecurityAuthentication;
-    "APIKeyHeader"?: ApiKeyConfiguration;
-    "X-API-KEY"?: ApiKeyConfiguration;
+    "Bearer"?: HttpBearerConfiguration;
 };
 export declare function configureAuthMethods(config: AuthMethodsConfiguration | undefined): AuthMethods;

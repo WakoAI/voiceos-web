@@ -4,7 +4,6 @@ export declare class LanguageModelCost {
     'cost': number;
     'inputTokens': number;
     'outputTokens': number;
-    'external': boolean;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{
         name: string;

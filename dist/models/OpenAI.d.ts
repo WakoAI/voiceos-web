@@ -1,9 +1,7 @@
-import { ChatGPT } from '../models/ChatGPT';
-import { OpenAIFunction } from '../models/OpenAIFunction';
+import { Model3 } from '../models/Model3';
 export declare class OpenAI {
     'provider'?: OpenAIProviderEnum;
-    'model'?: ChatGPT;
-    'functions'?: Array<OpenAIFunction>;
+    'model'?: Model3;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{
         name: string;

@@ -26,12 +26,6 @@ var AgentCost = (function () {
             "baseName": "seconds",
             "type": "number",
             "format": ""
-        },
-        {
-            "name": "discount",
-            "baseName": "discount",
-            "type": "number",
-            "format": ""
         }
     ];
     return AgentCost;

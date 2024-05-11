@@ -3,7 +3,6 @@ export declare class TranscriberCost {
     'provider': WakoApiModelsTranscriberProvider;
     'cost': number;
     'seconds': number;
-    'external': boolean;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{
         name: string;

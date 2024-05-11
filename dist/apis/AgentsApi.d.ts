@@ -7,10 +7,10 @@ import { AgentResponse } from '../models/AgentResponse';
 import { UpdateAgent } from '../models/UpdateAgent';
 export declare class AgentsApiRequestFactory extends BaseAPIRequestFactory {
     createAgent(agentConfiguration: AgentConfiguration, _options?: Configuration): Promise<RequestContext>;
-    deleteAgent(agentId: string, _options?: Configuration): Promise<RequestContext>;
-    getAgent(agentId: string, _options?: Configuration): Promise<RequestContext>;
-    listAgents(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Promise<RequestContext>;
-    updateAgent(agentId: string, updateAgent: UpdateAgent, _options?: Configuration): Promise<RequestContext>;
+    deleteAgent(id: string, _options?: Configuration): Promise<RequestContext>;
+    getAgent(id: string, _options?: Configuration): Promise<RequestContext>;
+    listAgents(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Promise<RequestContext>;
+    updateAgent(id: string, updateAgent: UpdateAgent, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class AgentsApiResponseProcessor {
     createAgentWithHttpInfo(response: ResponseContext): Promise<HttpInfo<AgentResponse>>;

@@ -1,3 +1,3 @@
 export declare enum AgentProvider {
-    Wako = "wako"
+    Voiceos = "voiceos"
 }

@@ -3,7 +3,6 @@ export declare class TelephonyCost {
     'provider': WakoApiModelsPhoneNumberProvider;
     'cost': number;
     'seconds': number;
-    'external': boolean;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{
         name: string;

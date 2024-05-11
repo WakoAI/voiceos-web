@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PhoneNumbersApi = exports.CallsApi = exports.AgentsApi = exports.RequiredError = exports.createConfiguration = void 0;
+exports.PhoneNumbersApi = exports.DefaultApi = exports.ConversationsApi = exports.AgentsApi = exports.RequiredError = exports.createConfiguration = void 0;
 __exportStar(require("./http/http"), exports);
 __exportStar(require("./auth/auth"), exports);
 __exportStar(require("./models/all"), exports);
@@ -26,7 +26,8 @@ var baseapi_1 = require("./apis/baseapi");
 Object.defineProperty(exports, "RequiredError", { enumerable: true, get: function () { return baseapi_1.RequiredError; } });
 var PromiseAPI_1 = require("./types/PromiseAPI");
 Object.defineProperty(exports, "AgentsApi", { enumerable: true, get: function () { return PromiseAPI_1.PromiseAgentsApi; } });
-Object.defineProperty(exports, "CallsApi", { enumerable: true, get: function () { return PromiseAPI_1.PromiseCallsApi; } });
+Object.defineProperty(exports, "ConversationsApi", { enumerable: true, get: function () { return PromiseAPI_1.PromiseConversationsApi; } });
+Object.defineProperty(exports, "DefaultApi", { enumerable: true, get: function () { return PromiseAPI_1.PromiseDefaultApi; } });
 Object.defineProperty(exports, "PhoneNumbersApi", { enumerable: true, get: function () { return PromiseAPI_1.PromisePhoneNumbersApi; } });
 var client_1 = require("./client");
 exports.default = client_1.default;

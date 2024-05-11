@@ -53,7 +53,7 @@ export class AgentsApiRequestFactory extends BaseAPIRequestFactory {
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
+        authMethod = _config.authMethods["Bearer"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
@@ -68,20 +68,20 @@ export class AgentsApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      * Delete Agent
-     * @param agentId 
+     * @param id The id of the agent.
      */
-    public async deleteAgent(agentId: string, _options?: Configuration): Promise<RequestContext> {
+    public async deleteAgent(id: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'agentId' is not null or undefined
-        if (agentId === null || agentId === undefined) {
-            throw new RequiredError("AgentsApi", "deleteAgent", "agentId");
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new RequiredError("AgentsApi", "deleteAgent", "id");
         }
 
 
         // Path Params
-        const localVarPath = '/agents/{agent_id}'
-            .replace('{' + 'agent_id' + '}', encodeURIComponent(String(agentId)));
+        const localVarPath = '/agents/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -90,7 +90,7 @@ export class AgentsApiRequestFactory extends BaseAPIRequestFactory {
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
+        authMethod = _config.authMethods["Bearer"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
@@ -105,20 +105,20 @@ export class AgentsApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      * Get Agent
-     * @param agentId 
+     * @param id The id of the agent.
      */
-    public async getAgent(agentId: string, _options?: Configuration): Promise<RequestContext> {
+    public async getAgent(id: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'agentId' is not null or undefined
-        if (agentId === null || agentId === undefined) {
-            throw new RequiredError("AgentsApi", "getAgent", "agentId");
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new RequiredError("AgentsApi", "getAgent", "id");
         }
 
 
         // Path Params
-        const localVarPath = '/agents/{agent_id}'
-            .replace('{' + 'agent_id' + '}', encodeURIComponent(String(agentId)));
+        const localVarPath = '/agents/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -127,7 +127,7 @@ export class AgentsApiRequestFactory extends BaseAPIRequestFactory {
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
+        authMethod = _config.authMethods["Bearer"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
@@ -142,12 +142,12 @@ export class AgentsApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      * List Agents
-     * @param createdAfter 
-     * @param createdBefore 
-     * @param index 
-     * @param size 
+     * @param createdAfter The date after which the agent was created.
+     * @param createdBefore The date before which the agent was created.
+     * @param index The index of the page to return.
+     * @param limit The limit of items to return in the page.
      */
-    public async listAgents(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Promise<RequestContext> {
+    public async listAgents(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
 
@@ -177,14 +177,14 @@ export class AgentsApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
-        if (size !== undefined) {
-            requestContext.setQueryParam("size", ObjectSerializer.serialize(size, "number", ""));
+        if (limit !== undefined) {
+            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
         }
 
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
+        authMethod = _config.authMethods["Bearer"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
@@ -199,15 +199,15 @@ export class AgentsApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      * Update Agent
-     * @param agentId 
+     * @param id The id of the agent.
      * @param updateAgent 
      */
-    public async updateAgent(agentId: string, updateAgent: UpdateAgent, _options?: Configuration): Promise<RequestContext> {
+    public async updateAgent(id: string, updateAgent: UpdateAgent, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'agentId' is not null or undefined
-        if (agentId === null || agentId === undefined) {
-            throw new RequiredError("AgentsApi", "updateAgent", "agentId");
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new RequiredError("AgentsApi", "updateAgent", "id");
         }
 
 
@@ -218,8 +218,8 @@ export class AgentsApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/agents/{agent_id}'
-            .replace('{' + 'agent_id' + '}', encodeURIComponent(String(agentId)));
+        const localVarPath = '/agents/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -239,7 +239,7 @@ export class AgentsApiRequestFactory extends BaseAPIRequestFactory {
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods["APIKeyHeader"]
+        authMethod = _config.authMethods["Bearer"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }

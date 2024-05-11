@@ -2,56 +2,61 @@ import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/htt
 import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
-import { Agent } from '../models/Agent';
 import { AgentConfiguration } from '../models/AgentConfiguration';
 import { AgentCost } from '../models/AgentCost';
-import { AgentLanguage } from '../models/AgentLanguage';
 import { AgentPagination } from '../models/AgentPagination';
 import { AgentProvider } from '../models/AgentProvider';
 import { AgentResponse } from '../models/AgentResponse';
 import { AzureLanguages } from '../models/AzureLanguages';
 import { AzureModel } from '../models/AzureModel';
-import { AzureSynthesizer } from '../models/AzureSynthesizer';
 import { AzureTranscriber } from '../models/AzureTranscriber';
+import { AzureTranscriberLanguagesInner } from '../models/AzureTranscriberLanguagesInner';
+import { AzureVoice } from '../models/AzureVoice';
 import { BuyPhoneNumber } from '../models/BuyPhoneNumber';
-import { CallCost } from '../models/CallCost';
-import { CallRecording } from '../models/CallRecording';
-import { CallResponse } from '../models/CallResponse';
-import { CallStatus } from '../models/CallStatus';
-import { CallType } from '../models/CallType';
-import { CallsPagination } from '../models/CallsPagination';
 import { ChatGPT } from '../models/ChatGPT';
+import { ConversationCost } from '../models/ConversationCost';
+import { ConversationRecording } from '../models/ConversationRecording';
+import { ConversationResponse } from '../models/ConversationResponse';
+import { ConversationStatus } from '../models/ConversationStatus';
+import { ConversationType } from '../models/ConversationType';
+import { ConversationsPagination } from '../models/ConversationsPagination';
 import { CreateCall } from '../models/CreateCall';
-import { CreateCallResponse } from '../models/CreateCallResponse';
-import { Currency } from '../models/Currency';
 import { DeepgramLanguages } from '../models/DeepgramLanguages';
-import { DeepgramModel } from '../models/DeepgramModel';
 import { DeepgramTranscriber } from '../models/DeepgramTranscriber';
+import { DeepgramVoice } from '../models/DeepgramVoice';
 import { ElevenLabsModel } from '../models/ElevenLabsModel';
-import { ElevenLabsSynthesizer } from '../models/ElevenLabsSynthesizer';
+import { ElevenLabsVoices } from '../models/ElevenLabsVoices';
+import { ElevenlabsVoice } from '../models/ElevenlabsVoice';
 import { EndedReasons } from '../models/EndedReasons';
-import { Event } from '../models/Event';
 import { EventName } from '../models/EventName';
-import { EventVariableName } from '../models/EventVariableName';
 import { HTTPValidationError } from '../models/HTTPValidationError';
+import { Language } from '../models/Language';
 import { LanguageModelCost } from '../models/LanguageModelCost';
 import { Message } from '../models/Message';
 import { MessageRole } from '../models/MessageRole';
 import { MethodEnum } from '../models/MethodEnum';
+import { Model } from '../models/Model';
+import { Model1 } from '../models/Model1';
+import { Model2 } from '../models/Model2';
+import { Model3 } from '../models/Model3';
+import { Model4 } from '../models/Model4';
 import { OpenAI } from '../models/OpenAI';
-import { OpenAIFunction } from '../models/OpenAIFunction';
-import { OpenAIFunctionParameter } from '../models/OpenAIFunctionParameter';
-import { OpenAIFunctionType } from '../models/OpenAIFunctionType';
 import { PhoneNumber } from '../models/PhoneNumber';
+import { PhoneNumberEvents } from '../models/PhoneNumberEvents';
 import { PhoneNumberPagination } from '../models/PhoneNumberPagination';
 import { PhoneNumberResponse } from '../models/PhoneNumberResponse';
 import { PhoneNumberToBuy } from '../models/PhoneNumberToBuy';
-import { RimeSynthesizer } from '../models/RimeSynthesizer';
-import { SynthesizerCost } from '../models/SynthesizerCost';
+import { PhoneNumberWebhook } from '../models/PhoneNumberWebhook';
+import { PlayHTModel } from '../models/PlayHTModel';
+import { PlayhtVoice } from '../models/PlayhtVoice';
+import { RimeSpeaker } from '../models/RimeSpeaker';
+import { RimeVoice } from '../models/RimeVoice';
+import { Speaker } from '../models/Speaker';
 import { TelephonyCost } from '../models/TelephonyCost';
 import { Transcriber } from '../models/Transcriber';
 import { Transcriber1 } from '../models/Transcriber1';
 import { TranscriberCost } from '../models/TranscriberCost';
+import { TwilioPhoneCall } from '../models/TwilioPhoneCall';
 import { TwilioTelephony } from '../models/TwilioTelephony';
 import { UpdateAgent } from '../models/UpdateAgent';
 import { UpdatePhoneNumber } from '../models/UpdatePhoneNumber';
@@ -59,9 +64,13 @@ import { ValidationError } from '../models/ValidationError';
 import { ValidationErrorLocInner } from '../models/ValidationErrorLocInner';
 import { Voice } from '../models/Voice';
 import { Voice1 } from '../models/Voice1';
+import { VoiceCost } from '../models/VoiceCost';
+import { VoiceId } from '../models/VoiceId';
 import { WakoApiModelsLanguageModelProvider } from '../models/WakoApiModelsLanguageModelProvider';
 import { WakoApiModelsPhoneNumberProvider } from '../models/WakoApiModelsPhoneNumberProvider';
+import { WakoApiModelsSynthesizerDeepgramModel } from '../models/WakoApiModelsSynthesizerDeepgramModel';
 import { WakoApiModelsSynthesizerProvider } from '../models/WakoApiModelsSynthesizerProvider';
+import { WakoApiModelsTranscriberDeepgramModel } from '../models/WakoApiModelsTranscriberDeepgramModel';
 import { WakoApiModelsTranscriberProvider } from '../models/WakoApiModelsTranscriberProvider';
 import { Webhook } from '../models/Webhook';
 
@@ -114,10 +123,10 @@ export class ObservableAgentsApi {
 
     /**
      * Delete Agent
-     * @param agentId 
+     * @param id The id of the agent.
      */
-    public deleteAgentWithHttpInfo(agentId: string, _options?: Configuration): Observable<HttpInfo<AgentResponse>> {
-        const requestContextPromise = this.requestFactory.deleteAgent(agentId, _options);
+    public deleteAgentWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<AgentResponse>> {
+        const requestContextPromise = this.requestFactory.deleteAgent(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -137,18 +146,18 @@ export class ObservableAgentsApi {
 
     /**
      * Delete Agent
-     * @param agentId 
+     * @param id The id of the agent.
      */
-    public deleteAgent(agentId: string, _options?: Configuration): Observable<AgentResponse> {
-        return this.deleteAgentWithHttpInfo(agentId, _options).pipe(map((apiResponse: HttpInfo<AgentResponse>) => apiResponse.data));
+    public deleteAgent(id: string, _options?: Configuration): Observable<AgentResponse> {
+        return this.deleteAgentWithHttpInfo(id, _options).pipe(map((apiResponse: HttpInfo<AgentResponse>) => apiResponse.data));
     }
 
     /**
      * Get Agent
-     * @param agentId 
+     * @param id The id of the agent.
      */
-    public getAgentWithHttpInfo(agentId: string, _options?: Configuration): Observable<HttpInfo<AgentResponse>> {
-        const requestContextPromise = this.requestFactory.getAgent(agentId, _options);
+    public getAgentWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<AgentResponse>> {
+        const requestContextPromise = this.requestFactory.getAgent(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -168,21 +177,21 @@ export class ObservableAgentsApi {
 
     /**
      * Get Agent
-     * @param agentId 
+     * @param id The id of the agent.
      */
-    public getAgent(agentId: string, _options?: Configuration): Observable<AgentResponse> {
-        return this.getAgentWithHttpInfo(agentId, _options).pipe(map((apiResponse: HttpInfo<AgentResponse>) => apiResponse.data));
+    public getAgent(id: string, _options?: Configuration): Observable<AgentResponse> {
+        return this.getAgentWithHttpInfo(id, _options).pipe(map((apiResponse: HttpInfo<AgentResponse>) => apiResponse.data));
     }
 
     /**
      * List Agents
-     * @param createdAfter 
-     * @param createdBefore 
-     * @param index 
-     * @param size 
+     * @param createdAfter The date after which the agent was created.
+     * @param createdBefore The date before which the agent was created.
+     * @param index The index of the page to return.
+     * @param limit The limit of items to return in the page.
      */
-    public listAgentsWithHttpInfo(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Observable<HttpInfo<AgentPagination>> {
-        const requestContextPromise = this.requestFactory.listAgents(createdAfter, createdBefore, index, size, _options);
+    public listAgentsWithHttpInfo(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Observable<HttpInfo<AgentPagination>> {
+        const requestContextPromise = this.requestFactory.listAgents(createdAfter, createdBefore, index, limit, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -202,22 +211,22 @@ export class ObservableAgentsApi {
 
     /**
      * List Agents
-     * @param createdAfter 
-     * @param createdBefore 
-     * @param index 
-     * @param size 
+     * @param createdAfter The date after which the agent was created.
+     * @param createdBefore The date before which the agent was created.
+     * @param index The index of the page to return.
+     * @param limit The limit of items to return in the page.
      */
-    public listAgents(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Observable<AgentPagination> {
-        return this.listAgentsWithHttpInfo(createdAfter, createdBefore, index, size, _options).pipe(map((apiResponse: HttpInfo<AgentPagination>) => apiResponse.data));
+    public listAgents(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Observable<AgentPagination> {
+        return this.listAgentsWithHttpInfo(createdAfter, createdBefore, index, limit, _options).pipe(map((apiResponse: HttpInfo<AgentPagination>) => apiResponse.data));
     }
 
     /**
      * Update Agent
-     * @param agentId 
+     * @param id The id of the agent.
      * @param updateAgent 
      */
-    public updateAgentWithHttpInfo(agentId: string, updateAgent: UpdateAgent, _options?: Configuration): Observable<HttpInfo<AgentResponse>> {
-        const requestContextPromise = this.requestFactory.updateAgent(agentId, updateAgent, _options);
+    public updateAgentWithHttpInfo(id: string, updateAgent: UpdateAgent, _options?: Configuration): Observable<HttpInfo<AgentResponse>> {
+        const requestContextPromise = this.requestFactory.updateAgent(id, updateAgent, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -237,37 +246,37 @@ export class ObservableAgentsApi {
 
     /**
      * Update Agent
-     * @param agentId 
+     * @param id The id of the agent.
      * @param updateAgent 
      */
-    public updateAgent(agentId: string, updateAgent: UpdateAgent, _options?: Configuration): Observable<AgentResponse> {
-        return this.updateAgentWithHttpInfo(agentId, updateAgent, _options).pipe(map((apiResponse: HttpInfo<AgentResponse>) => apiResponse.data));
+    public updateAgent(id: string, updateAgent: UpdateAgent, _options?: Configuration): Observable<AgentResponse> {
+        return this.updateAgentWithHttpInfo(id, updateAgent, _options).pipe(map((apiResponse: HttpInfo<AgentResponse>) => apiResponse.data));
     }
 
 }
 
-import { CallsApiRequestFactory, CallsApiResponseProcessor} from "../apis/CallsApi";
-export class ObservableCallsApi {
-    private requestFactory: CallsApiRequestFactory;
-    private responseProcessor: CallsApiResponseProcessor;
+import { ConversationsApiRequestFactory, ConversationsApiResponseProcessor} from "../apis/ConversationsApi";
+export class ObservableConversationsApi {
+    private requestFactory: ConversationsApiRequestFactory;
+    private responseProcessor: ConversationsApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: CallsApiRequestFactory,
-        responseProcessor?: CallsApiResponseProcessor
+        requestFactory?: ConversationsApiRequestFactory,
+        responseProcessor?: ConversationsApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new CallsApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new CallsApiResponseProcessor();
+        this.requestFactory = requestFactory || new ConversationsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new ConversationsApiResponseProcessor();
     }
 
     /**
-     * Create Call
+     * Create Phone Call
      * @param createCall 
      */
-    public createCallWithHttpInfo(createCall: CreateCall, _options?: Configuration): Observable<HttpInfo<CreateCallResponse>> {
-        const requestContextPromise = this.requestFactory.createCall(createCall, _options);
+    public createPhoneCallWithHttpInfo(createCall: CreateCall, _options?: Configuration): Observable<HttpInfo<ConversationResponse>> {
+        const requestContextPromise = this.requestFactory.createPhoneCall(createCall, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -281,24 +290,24 @@ export class ObservableCallsApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createCallWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createPhoneCallWithHttpInfo(rsp)));
             }));
     }
 
     /**
-     * Create Call
+     * Create Phone Call
      * @param createCall 
      */
-    public createCall(createCall: CreateCall, _options?: Configuration): Observable<CreateCallResponse> {
-        return this.createCallWithHttpInfo(createCall, _options).pipe(map((apiResponse: HttpInfo<CreateCallResponse>) => apiResponse.data));
+    public createPhoneCall(createCall: CreateCall, _options?: Configuration): Observable<ConversationResponse> {
+        return this.createPhoneCallWithHttpInfo(createCall, _options).pipe(map((apiResponse: HttpInfo<ConversationResponse>) => apiResponse.data));
     }
 
     /**
-     * Get Call
-     * @param callId 
+     * Get Conversation Recording
+     * @param id The id of the conversation
      */
-    public getCallWithHttpInfo(callId: string, _options?: Configuration): Observable<HttpInfo<CallResponse>> {
-        const requestContextPromise = this.requestFactory.getCall(callId, _options);
+    public getAudioRecordingWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<ConversationRecording>> {
+        const requestContextPromise = this.requestFactory.getAudioRecording(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -312,24 +321,24 @@ export class ObservableCallsApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getCallWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getAudioRecordingWithHttpInfo(rsp)));
             }));
     }
 
     /**
-     * Get Call
-     * @param callId 
+     * Get Conversation Recording
+     * @param id The id of the conversation
      */
-    public getCall(callId: string, _options?: Configuration): Observable<CallResponse> {
-        return this.getCallWithHttpInfo(callId, _options).pipe(map((apiResponse: HttpInfo<CallResponse>) => apiResponse.data));
+    public getAudioRecording(id: string, _options?: Configuration): Observable<ConversationRecording> {
+        return this.getAudioRecordingWithHttpInfo(id, _options).pipe(map((apiResponse: HttpInfo<ConversationRecording>) => apiResponse.data));
     }
 
     /**
-     * Get Call Recording
-     * @param callId 
+     * Get Conversation
+     * @param id The id of the conversation.
      */
-    public getRecordingWithHttpInfo(callId: string, _options?: Configuration): Observable<HttpInfo<CallRecording>> {
-        const requestContextPromise = this.requestFactory.getRecording(callId, _options);
+    public getConversationWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<ConversationResponse>> {
+        const requestContextPromise = this.requestFactory.getConversation(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -343,28 +352,28 @@ export class ObservableCallsApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getRecordingWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getConversationWithHttpInfo(rsp)));
             }));
     }
 
     /**
-     * Get Call Recording
-     * @param callId 
+     * Get Conversation
+     * @param id The id of the conversation.
      */
-    public getRecording(callId: string, _options?: Configuration): Observable<CallRecording> {
-        return this.getRecordingWithHttpInfo(callId, _options).pipe(map((apiResponse: HttpInfo<CallRecording>) => apiResponse.data));
+    public getConversation(id: string, _options?: Configuration): Observable<ConversationResponse> {
+        return this.getConversationWithHttpInfo(id, _options).pipe(map((apiResponse: HttpInfo<ConversationResponse>) => apiResponse.data));
     }
 
     /**
-     * List Calls
-     * @param status 
-     * @param createdBefore 
-     * @param createdAfter 
-     * @param index 
-     * @param size 
+     * List Conversations
+     * @param status The status of the conversations.
+     * @param createdBefore The date before which the conversations were created.
+     * @param createdAfter The date after which the conversations were created.
+     * @param index The index of the page to return.
+     * @param limit The limit of items to return in the page.
      */
-    public listCallsWithHttpInfo(status?: CallStatus, createdBefore?: Date, createdAfter?: Date, index?: number, size?: number, _options?: Configuration): Observable<HttpInfo<CallsPagination>> {
-        const requestContextPromise = this.requestFactory.listCalls(status, createdBefore, createdAfter, index, size, _options);
+    public listConversationsWithHttpInfo(status?: ConversationStatus, createdBefore?: Date, createdAfter?: Date, index?: number, limit?: number, _options?: Configuration): Observable<HttpInfo<ConversationsPagination>> {
+        const requestContextPromise = this.requestFactory.listConversations(status, createdBefore, createdAfter, index, limit, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -378,20 +387,67 @@ export class ObservableCallsApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listCallsWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listConversationsWithHttpInfo(rsp)));
             }));
     }
 
     /**
-     * List Calls
-     * @param status 
-     * @param createdBefore 
-     * @param createdAfter 
-     * @param index 
-     * @param size 
+     * List Conversations
+     * @param status The status of the conversations.
+     * @param createdBefore The date before which the conversations were created.
+     * @param createdAfter The date after which the conversations were created.
+     * @param index The index of the page to return.
+     * @param limit The limit of items to return in the page.
      */
-    public listCalls(status?: CallStatus, createdBefore?: Date, createdAfter?: Date, index?: number, size?: number, _options?: Configuration): Observable<CallsPagination> {
-        return this.listCallsWithHttpInfo(status, createdBefore, createdAfter, index, size, _options).pipe(map((apiResponse: HttpInfo<CallsPagination>) => apiResponse.data));
+    public listConversations(status?: ConversationStatus, createdBefore?: Date, createdAfter?: Date, index?: number, limit?: number, _options?: Configuration): Observable<ConversationsPagination> {
+        return this.listConversationsWithHttpInfo(status, createdBefore, createdAfter, index, limit, _options).pipe(map((apiResponse: HttpInfo<ConversationsPagination>) => apiResponse.data));
+    }
+
+}
+
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+export class ObservableDefaultApi {
+    private requestFactory: DefaultApiRequestFactory;
+    private responseProcessor: DefaultApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: DefaultApiRequestFactory,
+        responseProcessor?: DefaultApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new DefaultApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new DefaultApiResponseProcessor();
+    }
+
+    /**
+     * Health Check
+     */
+    public healthCheckGetWithHttpInfo(_options?: Configuration): Observable<HttpInfo<any>> {
+        const requestContextPromise = this.requestFactory.healthCheckGet(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.healthCheckGetWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Health Check
+     */
+    public healthCheckGet(_options?: Configuration): Observable<any> {
+        return this.healthCheckGetWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<any>) => apiResponse.data));
     }
 
 }
@@ -413,11 +469,12 @@ export class ObservablePhoneNumbersApi {
     }
 
     /**
-     * Buy Phone Number
-     * @param buyPhoneNumber 
+     * Available Phone Numbers To Buy
+     * @param contains The digits that the phone number contains.
+     * @param limit The number of available phone numbers to return.
      */
-    public buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Observable<HttpInfo<PhoneNumberResponse>> {
-        const requestContextPromise = this.requestFactory.buyPhoneNumberPhoneNumbersBuyPost(buyPhoneNumber, _options);
+    public availableNumbersToBuyWithHttpInfo(contains?: string, limit?: number, _options?: Configuration): Observable<HttpInfo<Array<PhoneNumberToBuy>>> {
+        const requestContextPromise = this.requestFactory.availableNumbersToBuy(contains, limit, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -431,25 +488,25 @@ export class ObservablePhoneNumbersApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.availableNumbersToBuyWithHttpInfo(rsp)));
             }));
+    }
+
+    /**
+     * Available Phone Numbers To Buy
+     * @param contains The digits that the phone number contains.
+     * @param limit The number of available phone numbers to return.
+     */
+    public availableNumbersToBuy(contains?: string, limit?: number, _options?: Configuration): Observable<Array<PhoneNumberToBuy>> {
+        return this.availableNumbersToBuyWithHttpInfo(contains, limit, _options).pipe(map((apiResponse: HttpInfo<Array<PhoneNumberToBuy>>) => apiResponse.data));
     }
 
     /**
      * Buy Phone Number
      * @param buyPhoneNumber 
      */
-    public buyPhoneNumberPhoneNumbersBuyPost(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Observable<PhoneNumberResponse> {
-        return this.buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo(buyPhoneNumber, _options).pipe(map((apiResponse: HttpInfo<PhoneNumberResponse>) => apiResponse.data));
-    }
-
-    /**
-     * Delete Phone Number
-     * @param phoneNumber 
-     * @param releasePhoneNumber 
-     */
-    public deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Observable<HttpInfo<PhoneNumber>> {
-        const requestContextPromise = this.requestFactory.deletePhoneNumberPhoneNumbersPhoneNumberDelete(phoneNumber, releasePhoneNumber, _options);
+    public buyPhoneNumberWithHttpInfo(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Observable<HttpInfo<PhoneNumberResponse>> {
+        const requestContextPromise = this.requestFactory.buyPhoneNumber(buyPhoneNumber, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -463,22 +520,54 @@ export class ObservablePhoneNumbersApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.buyPhoneNumberWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Buy Phone Number
+     * @param buyPhoneNumber 
+     */
+    public buyPhoneNumber(buyPhoneNumber: BuyPhoneNumber, _options?: Configuration): Observable<PhoneNumberResponse> {
+        return this.buyPhoneNumberWithHttpInfo(buyPhoneNumber, _options).pipe(map((apiResponse: HttpInfo<PhoneNumberResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Delete Phone Number
+     * @param phoneNumber The phone number including the country code.
+     * @param releasePhoneNumber 
+     */
+    public deletePhoneNumberWithHttpInfo(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Observable<HttpInfo<PhoneNumber>> {
+        const requestContextPromise = this.requestFactory.deletePhoneNumber(phoneNumber, releasePhoneNumber, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deletePhoneNumberWithHttpInfo(rsp)));
             }));
     }
 
     /**
      * Delete Phone Number
-     * @param phoneNumber 
+     * @param phoneNumber The phone number including the country code.
      * @param releasePhoneNumber 
      */
-    public deletePhoneNumberPhoneNumbersPhoneNumberDelete(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Observable<PhoneNumber> {
-        return this.deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo(phoneNumber, releasePhoneNumber, _options).pipe(map((apiResponse: HttpInfo<PhoneNumber>) => apiResponse.data));
+    public deletePhoneNumber(phoneNumber: string, releasePhoneNumber?: boolean, _options?: Configuration): Observable<PhoneNumber> {
+        return this.deletePhoneNumberWithHttpInfo(phoneNumber, releasePhoneNumber, _options).pipe(map((apiResponse: HttpInfo<PhoneNumber>) => apiResponse.data));
     }
 
     /**
      * Get Phone Number
-     * @param phoneNumber 
+     * @param phoneNumber The phone number including the country code.
      */
     public getPhoneNumberWithHttpInfo(phoneNumber: string, _options?: Configuration): Observable<HttpInfo<PhoneNumberResponse>> {
         const requestContextPromise = this.requestFactory.getPhoneNumber(phoneNumber, _options);
@@ -501,56 +590,21 @@ export class ObservablePhoneNumbersApi {
 
     /**
      * Get Phone Number
-     * @param phoneNumber 
+     * @param phoneNumber The phone number including the country code.
      */
     public getPhoneNumber(phoneNumber: string, _options?: Configuration): Observable<PhoneNumberResponse> {
         return this.getPhoneNumberWithHttpInfo(phoneNumber, _options).pipe(map((apiResponse: HttpInfo<PhoneNumberResponse>) => apiResponse.data));
     }
 
     /**
-     * List Available Phone Numbers
-     * @param areaCode 
-     * @param contains 
-     * @param limit 
-     */
-    public listAvailablePhoneNumbersWithHttpInfo(areaCode?: string, contains?: string, limit?: number, _options?: Configuration): Observable<HttpInfo<Array<PhoneNumberToBuy>>> {
-        const requestContextPromise = this.requestFactory.listAvailablePhoneNumbers(areaCode, contains, limit, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listAvailablePhoneNumbersWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * List Available Phone Numbers
-     * @param areaCode 
-     * @param contains 
-     * @param limit 
-     */
-    public listAvailablePhoneNumbers(areaCode?: string, contains?: string, limit?: number, _options?: Configuration): Observable<Array<PhoneNumberToBuy>> {
-        return this.listAvailablePhoneNumbersWithHttpInfo(areaCode, contains, limit, _options).pipe(map((apiResponse: HttpInfo<Array<PhoneNumberToBuy>>) => apiResponse.data));
-    }
-
-    /**
      * List Phone Numbers
-     * @param createdAfter 
-     * @param createdBefore 
-     * @param index 
-     * @param size 
+     * @param createdAfter The date the phone number was created after.
+     * @param createdBefore The date the phone number was created before.
+     * @param index The index of the page to return.
+     * @param limit The number of phone numbers to return in the page.
      */
-    public listPhoneNumbersWithHttpInfo(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Observable<HttpInfo<PhoneNumberPagination>> {
-        const requestContextPromise = this.requestFactory.listPhoneNumbers(createdAfter, createdBefore, index, size, _options);
+    public listPhoneNumbersWithHttpInfo(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Observable<HttpInfo<PhoneNumberPagination>> {
+        const requestContextPromise = this.requestFactory.listPhoneNumbers(createdAfter, createdBefore, index, limit, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -570,22 +624,22 @@ export class ObservablePhoneNumbersApi {
 
     /**
      * List Phone Numbers
-     * @param createdAfter 
-     * @param createdBefore 
-     * @param index 
-     * @param size 
+     * @param createdAfter The date the phone number was created after.
+     * @param createdBefore The date the phone number was created before.
+     * @param index The index of the page to return.
+     * @param limit The number of phone numbers to return in the page.
      */
-    public listPhoneNumbers(createdAfter?: Date, createdBefore?: Date, index?: number, size?: number, _options?: Configuration): Observable<PhoneNumberPagination> {
-        return this.listPhoneNumbersWithHttpInfo(createdAfter, createdBefore, index, size, _options).pipe(map((apiResponse: HttpInfo<PhoneNumberPagination>) => apiResponse.data));
+    public listPhoneNumbers(createdAfter?: Date, createdBefore?: Date, index?: number, limit?: number, _options?: Configuration): Observable<PhoneNumberPagination> {
+        return this.listPhoneNumbersWithHttpInfo(createdAfter, createdBefore, index, limit, _options).pipe(map((apiResponse: HttpInfo<PhoneNumberPagination>) => apiResponse.data));
     }
 
     /**
      * Update Phone Number
-     * @param phoneNumber 
+     * @param phoneNumber The phone number including the country code.
      * @param updatePhoneNumber 
      */
-    public updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Observable<HttpInfo<PhoneNumberResponse>> {
-        const requestContextPromise = this.requestFactory.updatePhoneNumberPhoneNumbersPhoneNumberPatch(phoneNumber, updatePhoneNumber, _options);
+    public updatePhoneNumberWithHttpInfo(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Observable<HttpInfo<PhoneNumberResponse>> {
+        const requestContextPromise = this.requestFactory.updatePhoneNumber(phoneNumber, updatePhoneNumber, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -599,17 +653,17 @@ export class ObservablePhoneNumbersApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.updatePhoneNumberWithHttpInfo(rsp)));
             }));
     }
 
     /**
      * Update Phone Number
-     * @param phoneNumber 
+     * @param phoneNumber The phone number including the country code.
      * @param updatePhoneNumber 
      */
-    public updatePhoneNumberPhoneNumbersPhoneNumberPatch(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Observable<PhoneNumberResponse> {
-        return this.updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo(phoneNumber, updatePhoneNumber, _options).pipe(map((apiResponse: HttpInfo<PhoneNumberResponse>) => apiResponse.data));
+    public updatePhoneNumber(phoneNumber: string, updatePhoneNumber: UpdatePhoneNumber, _options?: Configuration): Observable<PhoneNumberResponse> {
+        return this.updatePhoneNumberWithHttpInfo(phoneNumber, updatePhoneNumber, _options).pipe(map((apiResponse: HttpInfo<PhoneNumberResponse>) => apiResponse.data));
     }
 
 }

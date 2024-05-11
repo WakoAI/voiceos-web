@@ -1,7 +1,7 @@
-import { AzureLanguages } from '../models/AzureLanguages';
+import { AzureTranscriberLanguagesInner } from '../models/AzureTranscriberLanguagesInner';
 export declare class AzureTranscriber {
     'provider'?: AzureTranscriberProviderEnum;
-    'languages'?: Array<AzureLanguages>;
+    'languages'?: Array<AzureTranscriberLanguagesInner>;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{
         name: string;

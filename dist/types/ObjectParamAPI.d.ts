@@ -4,12 +4,11 @@ import { AgentConfiguration } from '../models/AgentConfiguration';
 import { AgentPagination } from '../models/AgentPagination';
 import { AgentResponse } from '../models/AgentResponse';
 import { BuyPhoneNumber } from '../models/BuyPhoneNumber';
-import { CallRecording } from '../models/CallRecording';
-import { CallResponse } from '../models/CallResponse';
-import { CallStatus } from '../models/CallStatus';
-import { CallsPagination } from '../models/CallsPagination';
+import { ConversationRecording } from '../models/ConversationRecording';
+import { ConversationResponse } from '../models/ConversationResponse';
+import { ConversationStatus } from '../models/ConversationStatus';
+import { ConversationsPagination } from '../models/ConversationsPagination';
 import { CreateCall } from '../models/CreateCall';
-import { CreateCallResponse } from '../models/CreateCallResponse';
 import { PhoneNumber } from '../models/PhoneNumber';
 import { PhoneNumberPagination } from '../models/PhoneNumberPagination';
 import { PhoneNumberResponse } from '../models/PhoneNumberResponse';
@@ -21,19 +20,19 @@ export interface AgentsApiCreateAgentRequest {
     agentConfiguration: AgentConfiguration;
 }
 export interface AgentsApiDeleteAgentRequest {
-    agentId: string;
+    id: string;
 }
 export interface AgentsApiGetAgentRequest {
-    agentId: string;
+    id: string;
 }
 export interface AgentsApiListAgentsRequest {
     createdAfter?: Date;
     createdBefore?: Date;
     index?: number;
-    size?: number;
+    limit?: number;
 }
 export interface AgentsApiUpdateAgentRequest {
-    agentId: string;
+    id: string;
     updateAgent: UpdateAgent;
 }
 export declare class ObjectAgentsApi {
@@ -50,74 +49,82 @@ export declare class ObjectAgentsApi {
     updateAgentWithHttpInfo(param: AgentsApiUpdateAgentRequest, options?: Configuration): Promise<HttpInfo<AgentResponse>>;
     updateAgent(param: AgentsApiUpdateAgentRequest, options?: Configuration): Promise<AgentResponse>;
 }
-import { CallsApiRequestFactory, CallsApiResponseProcessor } from "../apis/CallsApi";
-export interface CallsApiCreateCallRequest {
+import { ConversationsApiRequestFactory, ConversationsApiResponseProcessor } from "../apis/ConversationsApi";
+export interface ConversationsApiCreatePhoneCallRequest {
     createCall: CreateCall;
 }
-export interface CallsApiGetCallRequest {
-    callId: string;
+export interface ConversationsApiGetAudioRecordingRequest {
+    id: string;
 }
-export interface CallsApiGetRecordingRequest {
-    callId: string;
+export interface ConversationsApiGetConversationRequest {
+    id: string;
 }
-export interface CallsApiListCallsRequest {
-    status?: CallStatus;
+export interface ConversationsApiListConversationsRequest {
+    status?: ConversationStatus;
     createdBefore?: Date;
     createdAfter?: Date;
     index?: number;
-    size?: number;
+    limit?: number;
 }
-export declare class ObjectCallsApi {
+export declare class ObjectConversationsApi {
     private api;
-    constructor(configuration: Configuration, requestFactory?: CallsApiRequestFactory, responseProcessor?: CallsApiResponseProcessor);
-    createCallWithHttpInfo(param: CallsApiCreateCallRequest, options?: Configuration): Promise<HttpInfo<CreateCallResponse>>;
-    createCall(param: CallsApiCreateCallRequest, options?: Configuration): Promise<CreateCallResponse>;
-    getCallWithHttpInfo(param: CallsApiGetCallRequest, options?: Configuration): Promise<HttpInfo<CallResponse>>;
-    getCall(param: CallsApiGetCallRequest, options?: Configuration): Promise<CallResponse>;
-    getRecordingWithHttpInfo(param: CallsApiGetRecordingRequest, options?: Configuration): Promise<HttpInfo<CallRecording>>;
-    getRecording(param: CallsApiGetRecordingRequest, options?: Configuration): Promise<CallRecording>;
-    listCallsWithHttpInfo(param?: CallsApiListCallsRequest, options?: Configuration): Promise<HttpInfo<CallsPagination>>;
-    listCalls(param?: CallsApiListCallsRequest, options?: Configuration): Promise<CallsPagination>;
+    constructor(configuration: Configuration, requestFactory?: ConversationsApiRequestFactory, responseProcessor?: ConversationsApiResponseProcessor);
+    createPhoneCallWithHttpInfo(param: ConversationsApiCreatePhoneCallRequest, options?: Configuration): Promise<HttpInfo<ConversationResponse>>;
+    createPhoneCall(param: ConversationsApiCreatePhoneCallRequest, options?: Configuration): Promise<ConversationResponse>;
+    getAudioRecordingWithHttpInfo(param: ConversationsApiGetAudioRecordingRequest, options?: Configuration): Promise<HttpInfo<ConversationRecording>>;
+    getAudioRecording(param: ConversationsApiGetAudioRecordingRequest, options?: Configuration): Promise<ConversationRecording>;
+    getConversationWithHttpInfo(param: ConversationsApiGetConversationRequest, options?: Configuration): Promise<HttpInfo<ConversationResponse>>;
+    getConversation(param: ConversationsApiGetConversationRequest, options?: Configuration): Promise<ConversationResponse>;
+    listConversationsWithHttpInfo(param?: ConversationsApiListConversationsRequest, options?: Configuration): Promise<HttpInfo<ConversationsPagination>>;
+    listConversations(param?: ConversationsApiListConversationsRequest, options?: Configuration): Promise<ConversationsPagination>;
+}
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor } from "../apis/DefaultApi";
+export interface DefaultApiHealthCheckGetRequest {
+}
+export declare class ObjectDefaultApi {
+    private api;
+    constructor(configuration: Configuration, requestFactory?: DefaultApiRequestFactory, responseProcessor?: DefaultApiResponseProcessor);
+    healthCheckGetWithHttpInfo(param?: DefaultApiHealthCheckGetRequest, options?: Configuration): Promise<HttpInfo<any>>;
+    healthCheckGet(param?: DefaultApiHealthCheckGetRequest, options?: Configuration): Promise<any>;
 }
 import { PhoneNumbersApiRequestFactory, PhoneNumbersApiResponseProcessor } from "../apis/PhoneNumbersApi";
-export interface PhoneNumbersApiBuyPhoneNumberPhoneNumbersBuyPostRequest {
+export interface PhoneNumbersApiAvailableNumbersToBuyRequest {
+    contains?: string;
+    limit?: number;
+}
+export interface PhoneNumbersApiBuyPhoneNumberRequest {
     buyPhoneNumber: BuyPhoneNumber;
 }
-export interface PhoneNumbersApiDeletePhoneNumberPhoneNumbersPhoneNumberDeleteRequest {
+export interface PhoneNumbersApiDeletePhoneNumberRequest {
     phoneNumber: string;
     releasePhoneNumber?: boolean;
 }
 export interface PhoneNumbersApiGetPhoneNumberRequest {
     phoneNumber: string;
 }
-export interface PhoneNumbersApiListAvailablePhoneNumbersRequest {
-    areaCode?: string;
-    contains?: string;
-    limit?: number;
-}
 export interface PhoneNumbersApiListPhoneNumbersRequest {
     createdAfter?: Date;
     createdBefore?: Date;
     index?: number;
-    size?: number;
+    limit?: number;
 }
-export interface PhoneNumbersApiUpdatePhoneNumberPhoneNumbersPhoneNumberPatchRequest {
+export interface PhoneNumbersApiUpdatePhoneNumberRequest {
     phoneNumber: string;
     updatePhoneNumber: UpdatePhoneNumber;
 }
 export declare class ObjectPhoneNumbersApi {
     private api;
     constructor(configuration: Configuration, requestFactory?: PhoneNumbersApiRequestFactory, responseProcessor?: PhoneNumbersApiResponseProcessor);
-    buyPhoneNumberPhoneNumbersBuyPostWithHttpInfo(param: PhoneNumbersApiBuyPhoneNumberPhoneNumbersBuyPostRequest, options?: Configuration): Promise<HttpInfo<PhoneNumberResponse>>;
-    buyPhoneNumberPhoneNumbersBuyPost(param: PhoneNumbersApiBuyPhoneNumberPhoneNumbersBuyPostRequest, options?: Configuration): Promise<PhoneNumberResponse>;
-    deletePhoneNumberPhoneNumbersPhoneNumberDeleteWithHttpInfo(param: PhoneNumbersApiDeletePhoneNumberPhoneNumbersPhoneNumberDeleteRequest, options?: Configuration): Promise<HttpInfo<PhoneNumber>>;
-    deletePhoneNumberPhoneNumbersPhoneNumberDelete(param: PhoneNumbersApiDeletePhoneNumberPhoneNumbersPhoneNumberDeleteRequest, options?: Configuration): Promise<PhoneNumber>;
+    availableNumbersToBuyWithHttpInfo(param?: PhoneNumbersApiAvailableNumbersToBuyRequest, options?: Configuration): Promise<HttpInfo<Array<PhoneNumberToBuy>>>;
+    availableNumbersToBuy(param?: PhoneNumbersApiAvailableNumbersToBuyRequest, options?: Configuration): Promise<Array<PhoneNumberToBuy>>;
+    buyPhoneNumberWithHttpInfo(param: PhoneNumbersApiBuyPhoneNumberRequest, options?: Configuration): Promise<HttpInfo<PhoneNumberResponse>>;
+    buyPhoneNumber(param: PhoneNumbersApiBuyPhoneNumberRequest, options?: Configuration): Promise<PhoneNumberResponse>;
+    deletePhoneNumberWithHttpInfo(param: PhoneNumbersApiDeletePhoneNumberRequest, options?: Configuration): Promise<HttpInfo<PhoneNumber>>;
+    deletePhoneNumber(param: PhoneNumbersApiDeletePhoneNumberRequest, options?: Configuration): Promise<PhoneNumber>;
     getPhoneNumberWithHttpInfo(param: PhoneNumbersApiGetPhoneNumberRequest, options?: Configuration): Promise<HttpInfo<PhoneNumberResponse>>;
     getPhoneNumber(param: PhoneNumbersApiGetPhoneNumberRequest, options?: Configuration): Promise<PhoneNumberResponse>;
-    listAvailablePhoneNumbersWithHttpInfo(param?: PhoneNumbersApiListAvailablePhoneNumbersRequest, options?: Configuration): Promise<HttpInfo<Array<PhoneNumberToBuy>>>;
-    listAvailablePhoneNumbers(param?: PhoneNumbersApiListAvailablePhoneNumbersRequest, options?: Configuration): Promise<Array<PhoneNumberToBuy>>;
     listPhoneNumbersWithHttpInfo(param?: PhoneNumbersApiListPhoneNumbersRequest, options?: Configuration): Promise<HttpInfo<PhoneNumberPagination>>;
     listPhoneNumbers(param?: PhoneNumbersApiListPhoneNumbersRequest, options?: Configuration): Promise<PhoneNumberPagination>;
-    updatePhoneNumberPhoneNumbersPhoneNumberPatchWithHttpInfo(param: PhoneNumbersApiUpdatePhoneNumberPhoneNumbersPhoneNumberPatchRequest, options?: Configuration): Promise<HttpInfo<PhoneNumberResponse>>;
-    updatePhoneNumberPhoneNumbersPhoneNumberPatch(param: PhoneNumbersApiUpdatePhoneNumberPhoneNumbersPhoneNumberPatchRequest, options?: Configuration): Promise<PhoneNumberResponse>;
+    updatePhoneNumberWithHttpInfo(param: PhoneNumbersApiUpdatePhoneNumberRequest, options?: Configuration): Promise<HttpInfo<PhoneNumberResponse>>;
+    updatePhoneNumber(param: PhoneNumbersApiUpdatePhoneNumberRequest, options?: Configuration): Promise<PhoneNumberResponse>;
 }

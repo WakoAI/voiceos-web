@@ -16,8 +16,8 @@ var PhoneNumberResponse = (function () {
             "format": ""
         },
         {
-            "name": "inboundAgentUri",
-            "baseName": "inbound_agent_uri",
+            "name": "inboundAgentId",
+            "baseName": "inbound_agent_id",
             "type": "string",
             "format": ""
         },
@@ -52,9 +52,9 @@ var PhoneNumberResponse = (function () {
             "format": ""
         },
         {
-            "name": "stripeSubscriptionId",
-            "baseName": "stripe_subscription_id",
-            "type": "string",
+            "name": "webhooks",
+            "baseName": "webhooks",
+            "type": "Array<PhoneNumberWebhook>",
             "format": ""
         },
         {

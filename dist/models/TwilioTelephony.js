@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TwilioTelephonyProviderEnum = exports.TwilioTelephony = void 0;
+exports.TwilioTelephony = void 0;
 var TwilioTelephony = (function () {
     function TwilioTelephony() {
     }
@@ -12,7 +12,7 @@ var TwilioTelephony = (function () {
         {
             "name": "provider",
             "baseName": "provider",
-            "type": "TwilioTelephonyProviderEnum",
+            "type": "WakoApiModelsPhoneNumberProvider",
             "format": ""
         },
         {
@@ -37,8 +37,4 @@ var TwilioTelephony = (function () {
     return TwilioTelephony;
 }());
 exports.TwilioTelephony = TwilioTelephony;
-var TwilioTelephonyProviderEnum;
-(function (TwilioTelephonyProviderEnum) {
-    TwilioTelephonyProviderEnum["Twilio"] = "twilio";
-})(TwilioTelephonyProviderEnum = exports.TwilioTelephonyProviderEnum || (exports.TwilioTelephonyProviderEnum = {}));
 //# sourceMappingURL=TwilioTelephony.js.map

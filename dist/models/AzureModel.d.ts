@@ -1,20 +1,8 @@
 export declare enum AzureModel {
-    SteffanNeural = "en-US-SteffanNeural",
-    JennyNeural = "en-US-JennyNeural",
-    AndrewNeural = "en-US-AndrewNeural",
-    EmmaNeural = "en-US-EmmaNeural",
-    AvaNeural = "en-US-AvaNeural",
-    BrianNeural = "en-US-BrianNeural",
     AvaMultilingualNeural = "en-US-AvaMultilingualNeural",
     JennyMultilingualNeural = "en-US-JennyMultilingualNeural",
     RyanMultilingualNeural = "en-US-RyanMultilingualNeural",
     AndrewMultilingualNeural = "en-US-AndrewMultilingualNeural",
     BrianMultilingualNeural = "en-US-BrianMultilingualNeural",
-    EmmaMultilingualNeural = "en-US-EmmaMultilingualNeural",
-    AlloyMultilingualNeural = "en-US-AlloyMultilingualNeural",
-    EchoMultilingualNeural = "en-US-EchoMultilingualNeural",
-    FableMultilingualNeural = "en-US-FableMultilingualNeural",
-    NovaMultilingualNeural = "en-US-NovaMultilingualNeural",
-    OnyxMultilingualNeural = "en-US-OnyxMultilingualNeural",
-    ShimmerMultilingualNeural = "en-US-ShimmerMultilingualNeural"
+    EmmaMultilingualNeural = "en-US-EmmaMultilingualNeural"
 }

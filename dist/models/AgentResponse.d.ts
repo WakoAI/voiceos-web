@@ -1,23 +1,23 @@
-import { AgentLanguage } from '../models/AgentLanguage';
 import { OpenAI } from '../models/OpenAI';
 import { Transcriber } from '../models/Transcriber';
 import { Voice } from '../models/Voice';
 import { Webhook } from '../models/Webhook';
 export declare class AgentResponse {
-    'name': string;
-    'initialMessage': string;
-    'prompt': string;
-    'language'?: AgentLanguage;
-    'languageModel'?: OpenAI;
+    'initialMessage'?: string;
+    'prompt'?: string;
     'voice'?: Voice;
+    'languageModel'?: OpenAI;
     'transcriber'?: Transcriber;
-    'maxCallDuration'?: number;
+    'maxDurationSeconds'?: number;
     'webhooks'?: Array<Webhook>;
-    'id': string;
+    'metadata'?: {
+        [key: string]: string;
+    };
     'uri': string;
     'accountId': string;
     'createdAt': Date;
     'updatedAt': Date;
+    'id': string;
     static readonly discriminator: string | undefined;
     static readonly attributeTypeMap: Array<{
         name: string;

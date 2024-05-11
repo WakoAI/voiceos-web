@@ -1,1 +1,1 @@
-{"version":3,"file":"MessageRole.js","sourceRoot":"","sources":["../../models/MessageRole.ts"],"names":[],"mappings":";;;AAiBA,IAAY,WAGX;AAHD,WAAY,WAAW;IACnB,8BAAe,CAAA;IACf,8BAAe,CAAA;AACnB,CAAC,EAHW,WAAW,GAAX,mBAAW,KAAX,mBAAW,QAGtB"}
+{"version":3,"file":"MessageRole.js","sourceRoot":"","sources":["../../models/MessageRole.ts"],"names":[],"mappings":";;;AAiBA,IAAY,WAGX;AAHD,WAAY,WAAW;IACnB,8BAAe,CAAA;IACf,4BAAa,CAAA;AACjB,CAAC,EAHW,WAAW,GAAX,mBAAW,KAAX,mBAAW,QAGtB"}

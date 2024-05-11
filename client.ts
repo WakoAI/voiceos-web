@@ -1,7 +1,7 @@
 import { Configuration, createConfiguration } from "./configuration";
-import { PromiseAgentsApi, PromiseCallsApi, PromisePhoneNumbersApi } from "./types/PromiseAPI";
+import { PromiseAgentsApi, PromiseConversationsApi, PromisePhoneNumbersApi } from "./types/PromiseAPI";
 import { servers } from './servers';
-import { AuthMethodsConfiguration } from "./auth/auth";
+import { AuthMethodsConfiguration, TokenProvider } from "./auth/auth";
 
 // import all models 
 import * as models from "./models/all";
@@ -9,15 +9,20 @@ import * as models from "./models/all";
 export default class VoiceOS {
     private config: Configuration;
     public agents: PromiseAgentsApi;
-    public calls: PromiseCallsApi;
+    public conversations: PromiseConversationsApi;
     public phoneNumbers: PromisePhoneNumbersApi;
     public models: typeof models;
   
     constructor(api_key?: string) {
         const authConfig: AuthMethodsConfiguration = {
-            "APIKeyHeader": api_key
-        }
-
+            Bearer: {
+                tokenProvider: {
+                    getToken: async () => {
+                        return api_key || "";
+                    }
+                } as TokenProvider
+            }
+        };
         
       this.config = createConfiguration(
         {
@@ -27,7 +32,7 @@ export default class VoiceOS {
         );
 
         this.agents = new PromiseAgentsApi(this.config);
-        this.calls = new PromiseCallsApi(this.config);
+        this.conversations = new PromiseConversationsApi(this.config);
         this.phoneNumbers = new PromisePhoneNumbersApi(this.config);
         this.models = models;
     }
